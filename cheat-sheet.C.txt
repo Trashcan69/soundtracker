@@ -1,0 +1,41 @@
+
+ Standard Effects Column          Volume Column (See README for modes)
+ ---------------------------------------------------------------------
+
+ 0      Arpeggio                       0       Do nothing (ST mode)
+ 1  (*) Porta up                   0x10-0x50   Set volume Value-0x10
+ 2  (*) Porta down                 0x00-0x40   Set volume (FT2 mode)
+ 3  (*) Tone porta                   :          :        :
+ 4  (*) Vibrato                    0x60-0x6f   Volume slide down (-)
+ 5  (*) Tone porta+Volume slide    0x70-0x7f   Volume slide up (+)
+ 6  (*) Vibrato+Volume slide       0x80-0x8f   Fine vol slide down (d)
+ 7  (*) Tremolo                    0x90-0x9f   Fine vol slide up (u)
+ 8      Set panning                0xa0-0xaf   Set vibrato speed (s)
+ 9  (*) Sample offset              0xb0-0xbf   Vibrato (v)
+ A  (*) Volume slide               0xc0-0xcf   Set panning (p)
+ B      Position jump              0xd0-0xdf   Panning slide left (l)
+ C      Set volume                 0xe0-0xef   Panning slide right (r)
+ D      Pattern break              0xf0-0xff   Tone porta (m)
+ E1 (*) Fine porta up
+ E2 (*) Fine porta down            (*) = If the data byte is zero,
+ E3     Set gliss control                the last nonzero byte for the
+ E4     Set vibrato control              command should be used.
+ E5     Set finetune
+ E6     Set loop begin/loop
+ E7     Set tremolo control        ===================================
+ E9     Retrig note
+ EA (*) Fine volume slide up       Non-Standard XM effects - only
+ EB (*) Fine volume slide down     available in SoundTracker (if
+ EC     Note cut                   enabled in GUI Settings)
+ ED     Note delay                 - don't use if you want to
+ EE     Pattern delay              stay compatible with FastTracker.
+ F      Set tempo/BPM              -----------------------------------
+ G      Set global volume
+ H  (*) Global volume slide        Zxx  Set LP filter cutoff frequency
+ K      Key off                    Qxx  Set LP filter resonance
+ L      Set envelope position
+ P  (*) Panning slide              To switch off the filter, you must
+ R  (*) Multi retrig note          use Q00 _and_ Zff!.
+ T      Tremor
+ X1 (*) Extra fine porta up
+ X2 (*) Extra fine porta down

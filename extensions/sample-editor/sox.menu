@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<soundtracker version="1.0.5">
+  <command>sox -t raw -r %r -e signed-integer -b 16 -c %c - -t raw -r %r -e signed-integer -b 16 -c %c -</command>
+  <menu label="Sox">
+    <menu label="Filters">
+      <menuitem label="Allpass" title="All-pass filter">
+        <parameter type="const" value="allpass" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" default="100" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Band" title="Band-pass filter">
+        <parameter type="const" value="band" />
+        <parameter name="Noise mode" type="const" key="-n" optional="false" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" optional="true" default="100" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Bandpass" title="Band-pass filter">
+        <parameter type="const" value="bandpass" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" optional="true" default="100" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Bandreject" title="Band-reject filter">
+        <parameter type="const" value="bandreject" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" optional="true" default="100" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Bass" title="Bass boost / suppress">
+        <parameter type="const" value="bass" />
+        <parameter name="Gain [dB]" type="float" min="-20.0" max="20.0" default="0.0" digits="1" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="100" />
+        <parameter name="Slope" type="float" min="0.1" max="1.0" default="0.5" digits="2" step="0.1" />
+        <parameter type="const" key="s" delimiter="" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="DC Shift" title="Apply a DC shift to the audio">
+        <parameter type="const" value="dcshift" />
+        <parameter name="Shift" type="float" min="-2.0" max="2.0" default="0.0" digits="2" step="0.1" />
+        <parameter name="Gain Limiter" type="float" min="0.0" max="0.1" default="0.03" digits="2" step="0.01" optional="false" />
+      </menuitem>
+      <menuitem label="Equalizer" title="Two-pole peaking equalizer">
+        <parameter type="const" value="equalizer" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" default="100" />
+        <parameter name="Gain [dB]" type="float" min="-20.0" max="20.0" default="0.0" digits="1" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="High-pass" title="High-pass filter">
+        <parameter type="const" value="highpass" />
+        <parameter name="Single-pole" type="const" key="-1" optional="false" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" default="100" optional="false" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Hilbert" title="Hilbert transform filter">
+        <parameter type="const" value="hilbert" />
+        <parameter name="Taps" type="int" min="1" max="99" default="11" step="2" key="-n " optional="false" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Low-pass" title="Low-pass filter">
+        <parameter type="const" value="lowpass" />
+        <parameter name="Single-pole" type="const" key="-1" optional="false" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="1000" />
+        <parameter name="Width [Hz]" type="int" min="0" max="10000" default="100" optional="false" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Treble" title="Treble boost / suppress">
+        <parameter type="const" value="treble" />
+        <parameter name="Gain [dB]" type="float" min="-20.0" max="20.0" default="0.0" digits="1" />
+        <parameter name="Frequency [Hz]" type="int" min="0" max="22050" default="3000" />
+        <parameter name="Slope" type="float" min="0.1" max="1.0" default="0.5" digits="2" step="0.1" suffix="s" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Sinc" title="Sinc LP, HP, BP or BR filter">
+        <parameter type="const" value="sinc " />
+        <parameter name="Attenuation [dB]" type="float" min="40.0" max="160.0" default="120.0" step="1.0" key="-a " optional="false" suffix=" " delimiter="" />
+        <parameter name="Phase Response [%]" type="int" min="0" max="100" default="50" optional="false" key="-p " suffix=" " delimiter="" />
+        <parameter name="HP Transition Bandwidth [Hz]" type="int" min="10" max="1000" default="100" optional="false" key="-t " suffix=" " delimiter="" />
+        <parameter name="High-pass frequency [Hz]" type="int" min="10" max="22050" default="1000" optional="true" delimiter="" />
+        <parameter name="Low-pass frequency [Hz]" type="int" min="10" max="22050" default="2000" optional="false" delimiter="-" />
+        <parameter name="LP Transition Bandwidth [Hz]" type="int" min="10" max="1000" default="100" optional="false" key="-t " depend="5" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+    </menu>
+    <menu label="Acoustics">
+      <menuitem label="Bend" title="Pitch bend">
+        <parameter type="const" value="bend" />
+        <parameter name="Frame rate" type="int" min="5" max="100" default="25" key="-f " />
+        <parameter name="Oversampling" type="int" min="2" max="100" default="16" key="-o " />
+        <!-- single-fragment, whithout delay (0) -->
+        <parameter type="const" key="0" />
+        <parameter name="Amount [cents]" type="int" min="-1200" max="1200" default="100" delimiter="," />
+        <!-- duration is the whole sample, introduced as a parametric constant -->
+        <parameter type="const" key="%d" delimiter="," />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Chorus" title="Chorus">
+        <parameter type="const" value="chorus" />
+        <parameter name="Gain-in" type="float" min="0.0" max="3.0" default="0.9" digits="2" step="0.1" />
+        <parameter name="Gain-out" type="float" min="0.0" max="3.0" default="0.7" digits="2" step="0.1" />
+        <parameter name="Delay [ms]" type="int" min="10" max="300" default="50" repeat="5" repname="Number of Delays" />
+        <parameter name="Decay" type="float" min="0.1" max="1.0" default="0.4" digits="2" step="0.1" />
+        <parameter name="Speed [Hz]" type="float" min="0.05" max="3.0" default="0.25" digits="2" step="0.05" />
+        <parameter name="Depth [ms]" type="float" min="0.05" max="5.0" default="2.0" digits="2" step="0.05" />
+        <parameter name="Shape" type="variant">
+          <item name="Sine" value="-s" />
+          <item name="Triangular" value="-t" />
+        </parameter>
+      </menuitem>
+      <menuitem label="Compander" title="Dymanic range compressor / expander">
+        <parameter type="const" value="compand" />
+        <parameter name="Attack [s]" type="float" min="0.01" max="1.0" default="0.3" digits="2" step="0.1" />
+        <parameter name="Decay [s]" type="float" min="0.1" max="5.0" default="0.8" digits="1" step="0.1" delimiter="," suffix=" " />
+        <parameter name="Soft Knee [dB]" type="float" min="0.0" max="20.0" default="6.0" digits="1" optional="false" suffix=":" delimiter="" />
+        <parameter name="Input Level [dB]" type="float" min="-90.0" max="0.0" default="-70.0" digits="1" delimiter="" />
+        <parameter name="Output Level [dB]" type="float" min="-90.0" max="0.0" default="-60.0" digits="1" delimiter="," optional="false"/>
+        <parameter name="Gain [dB]" type="float" min="-20.0" max="20.0" default="60.0" digits="1" optional="false"/>
+        <parameter name="Initial Volume [dB]" type="float" min="-120.0" max="0.0" default="-90.0" digits="1" optional="false" depend="6" />
+        <parameter name="Delay [s]" type="float" min="0.0" max="3.0" default="0.1" digits="2" step="0.1" optional="false" depend="7" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Contrast" title="Contrast enchancer">
+        <parameter type="const" value="contrast" />
+        <parameter name="Amount" type="int" min="0" max="100" default="75" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Echo" title="Echo">
+        <parameter type="const" value="echo" />
+        <parameter name="Gain-in" type="float" min="0.0" max="3.0" default="0.9" digits="2" step="0.1" />
+        <parameter name="Gain-out" type="float" min="0.0" max="3.0" default="0.7" digits="2" step="0.1" />
+        <parameter name="Delay [ms]" type="int" min="1" max="10000" default="50" repeat="5" repname="Number of Echos" />
+        <parameter name="Decay" type="float" min="0.1" max="1.0" default="0.4" digits="2" step="0.1" />
+      </menuitem>
+      <menuitem label="Echos" title="Multiple Echo">
+        <parameter type="const" value="echos" />
+        <parameter name="Gain-in" type="float" min="0.0" max="3.0" default="0.9" digits="2" step="0.1" />
+        <parameter name="Gain-out" type="float" min="0.0" max="3.0" default="0.7" digits="2" step="0.1" />
+        <parameter name="Delay [ms]" type="int" min="1" max="10000" default="50" repeat="5" repname="Number of Echos" />
+        <parameter name="Decay" type="float" min="0.1" max="1.0" default="0.4" digits="2" step="0.1" />
+      </menuitem>
+      <menuitem label="Flanger" title="Flanger">
+        <parameter type="const" value="flanger" />
+        <parameter name="Delay [ms]" type="int" min="0" max="30" default="0" optional="false" />
+        <parameter name="Depth [ms]" type="float" min="0.0" max="10.0" default="2.0" digits="1" step="1" depend="1" />
+        <parameter name="Regen [%]" type="int" min="-95" max="95" default="0" depend="1" />
+        <parameter name="Width [%]" type="int" min="0" max="100" default="71" depend="1" />
+        <parameter name="Speed [Hz]" type="float" min="0.1" max="10.0" default="0.5" digits="2" step="0.1" depend="1" />
+        <parameter name="Shape" type="variant" depend="1">
+          <item name="Sine" value="sine" />
+          <item name="Triangular" value="triangle" />
+        </parameter>
+        <parameter name="Phase [%]" type="int" min="0" max="100" default="25" depend="1" />
+        <parameter name="Interpolation" type="variant" depend="1">
+          <item name="Linear" value="linear" />
+          <item name="Quadratic" value="quadratic" />
+        </parameter>
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Overdrive" title="Non-linear distorsion">
+        <parameter type="const" value="overdrive" />
+        <parameter name="Gain [dB]" type="float" min="0.0" max="40.0" default="20.0" digits="2" step="1.0" />
+        <parameter name="Colour" type="float" min="0.0" max="40.0" default="20.0" digits="2" step="1.0" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Phaser" title="Phaser">
+        <parameter type="const" value="phaser" />
+        <parameter name="Gain-in" type="float" min="0.0" max="3.0" default="0.9" digits="2" step="0.1" />
+        <parameter name="Gain-out" type="float" min="0.0" max="3.0" default="0.7" digits="2" step="0.1" />
+        <parameter name="Delay [ms]" type="int" min="0" max="30" default="0" optional="false" />
+        <parameter name="Decay" type="float" min="0.1" max="0.5" default="0.3" digits="2" step="0.05" />
+        <parameter name="Speed [Hz]" type="float" min="0.1" max="10.0" default="0.5" digits="2" step="0.1" />
+        <parameter name="Shape" type="variant">
+          <item name="Sine" value="-s" />
+          <item name="Triangular" value="-t" />
+        </parameter>
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Pitch" title="Change the audio pitch">
+        <parameter type="const" value="pitch" />
+        <parameter type="const" name="Quick" key="-q" optional="false" />
+        <parameter name="Amount [cents]" type="int" min="-1200" max="1200" default="100" />
+        <parameter name="Segment [ms]" type="float" min="1.0" max="100.0" default="82.0" digits="1" step="1.0" optional="false" />
+        <parameter name="Search [ms]" type="float" min="1.0" max="100.0" default="14.68" digits="2" step="1.0" optional="false" depend="4" />
+        <parameter name="Overlap [ms]" type="float" min="1.0" max="100.0" default="12.0" digits="2" step="1.0" optional="false" depend="5" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+      <menuitem label="Reverb" title="Reverberation">
+        <parameter type="const" value="reverb" />
+        <parameter type="const" name="Wet only" key="-w" optional="false" />
+        <parameter name="Reverberance [%]" type="int" min="0" max="100" default="50" optional="false" />
+        <parameter name="HF Damping [%]" type="int" min="0" max="100" default="50" optional="false" depend="2" />
+        <parameter name="Room Scale [%]" type="int" min="0" max="100" default="50" optional="false" depend="3" />
+        <parameter name="Stereo Depth [%]" type="int" min="0" max="100" default="100" optional="false" depend="4" />
+        <parameter name="Pre-delay [ms]" type="float" min="0.0" max="1000.0" default="0.0" digits="2" step="1.0" optional="false" depend="5" />
+        <parameter name="Gain [dB]" type="float" min="-20.0" max="20.0" default="0.0" digits="2" step="1.0" optional="false" depend="6" />
+        <parameter name="Normalize [dB]" type="float" min="-10.0" max="0.0" default="0.0" digits="1" step="1.0" key="norm " optional="false" />
+      </menuitem>
+    </menu>
+    <menuitem label="Manual" title="Manual Sox invocation">
+      <parameter name="Parameters" type="string" />
+    </menuitem>
+  </menu>
+</soundtracker>

@@ -1,0 +1,114 @@
+
+FAQ
+====
+
+QQQQ: SoundTracker complains about not being able to open /dev/dsp.
+
+a: Either you have not configured a sound driver for your system (you
+could check that by running an MP3 player or something) - or you are
+running GNOME and your soundcard is kept busy by the E Sound Daemon,
+which you can get rid of by using "killall esd" in a shell.
+
+There's also an "ESD" driver in the Audio settings, but it's not
+possible to do any serious tracking work because of the delay
+introduced by it.
+
+------------------------------------------------------------------------
+
+QQQQ: The sound output gets quite choppy under machine load.
+
+a1: Don't run the compiled executable directly, but do a full 'make
+install', this installs the executable setuid root and the audio
+thread gets a much higher priority. Read the notes in the INSTALL file
+about this subject.
+
+a2: Increase size of audio buffer in the Preferences section (for
+sound drivers which support it).
+
+a3: Disable Double Buffering a.k.a. Flicker-free scrolling. This may
+not look exactly nice, but can relieve your CPU from a lot of hard
+work (this depends on the graphics card and X server you are using).
+
+a4: Switch away from the scrolling patterns page and disable the
+scopes.
+
+a5: Reduce scopes and patterns update frequency in the Preferences
+section.
+
+a6: Install at least glibc2.1.1pre3, this fixed a strange sound bug
+for me.
+
+------------------------------------------------------------------------
+
+QQQQ: What about MIDI support?
+
+a: SoundTracker allows one to use a MIDI keyboard for playing and
+recording notes. Indeed, ST can receive MIDI events from any source
+like MIDI software players. Export to and import from MIDI files is not
+supported at the present moment as well as MIDI events sending.
+
+------------------------------------------------------------------------
+
+QQQQ: Why did you choose the XM format instead of the IT format?
+
+a: Primarily because XM is all what I need in order to make music.
+But that doesn't mean that the program couldn't be expanded in the
+future towards other formats. The part of the program needing most
+work is the editor (the user interface) anyway. You can basically use
+it to edit any module format, it just needs tuning and (of course) a
+new player routine. But this is not in scope for Version 1.0 of
+SoundTracker (limited IT format support might be added in Version 1.1).
+
+------------------------------------------------------------------------
+
+QQQQ: The scopes don't work, i.e., they show a flat line no matter how
+loud my music is playing.
+
+a1: Increase the scopes buffer size in the GUI settings.
+
+a2: If that doesn't work, your OSS kernel driver may be buggy. In that
+case, go to the source file app/drivers/oss-output.c, search for the
+line that says
+
+    d->realtimecaps = i & DSP_CAP_REALTIME;
+
+and change it into
+
+    d->realtimecaps = 0;
+
+Please report to mk@soundtracker.org if this fixes the problem, and
+what audio driver you are using.
+
+------------------------------------------------------------------------
+
+QQQQ: After upgrading to the SoundTracker 1.0.1 (or higher) some of the
+Play/Rec Song/Patter/Row keybindings stopped working.
+
+a: Starting from v1.0.1 some more keybindings are made configurable.
+Perhaps for your X11 keyboard layout the default keybindings are not
+applicable. No problem, just go to the Settings->Keyboard->Other keys
+and assing the desired keybindings. This should be made only once, then
+your keybindings will be remembered.
+
+------------------------------------------------------------------------
+
+QQQQ: Some charachers in the tracker panel are missing or incorrectly
+displayed.
+
+a: By default, "Monospace 10" font is used to display the patterns'
+contents. In yor particular system it can be mapped to something insane.
+To fix this problem, go to Settings->GUI Configuration menu entry, then
+select appropriate monospace font installed in your system.
+
+------------------------------------------------------------------------
+
+QQQQ: I set up symbolic representation of effects in the volume column,
+but when I use "tone portamento" effect (indicated by a quarter note
+symbol), some tracker lines appeared displaced from where they should be.
+
+a: This means that the font being used for pattern contents displaying
+does not contain the quarter note character and it's taken from another
+font with different metric; this brakes proper alignment of tracker
+lines. This is quite common situation (only few fonts have qurter note
+character), so the workaround is provided: set 'Leave Tone Porta as
+symbol "m"' setting on.

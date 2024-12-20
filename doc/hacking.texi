@@ -1,0 +1,301 @@
+\input texinfo @c -*-texinfo-*-
+@setfilename hacking.info
+@settitle SoundTracker internals
+
+@node Top, , (dir), (dir)
+@top
+
+@menu
+* General Architecture::
+* Synchronization of Audio and GUI::
+* How the audio subsystem works::
+* Driver API::
+* Mixer API::
+* Contributing Code::
+@end menu
+
+@node General Architecture, Synchronization of Audio and GUI, , Top
+@chapter General Architecture
+
+SoundTracker (short: ST) consists of two threads: the GUI (or main)
+thread, and the audio (or mixer / player) thread. The reason for not
+handling both jobs in one process via select() is obvious: the GUI can
+sometimes block the process for quite a long time. For example when the
+window is resized, widgets have to be redrawn, which can take a
+while. To provide continous sound output, we're using a separate thread.
+Sampling driver can also create its own thread. The communication between
+the sampling thread and the main thread is rather simple and wrapped in
+macros in drivers/driver-subs.h file.
+
+Communication between the main and audio threads is accomplished using two pipes. The
+communication codes for this pipe are defined in audio.h. When messages
+are received, they are handled in gui.c::read_mixer_pipe() and
+audio.c::audio_thread(), respectively.
+
+In its current form, the code is limited to dealing with one module at
+the same time, with one editing window. Some of the GUI code has already
+been modularized, since some of the editing facilities have been
+encapsulated in custom GTK+ widgets, for example sample-display.c,
+clavier.c, envelope-box.c, playlist.c and tracker.c. Noteworthy exceptions and
+containers of generous amounts of global variables are gui.c,
+sample-editor.c, instrument-editor.c and xm-player.c.
+
+For ST to be made fully multi-module capable ("object-oriented"), large
+parts of the GUI will have to be changed. Unfortunately, references to
+the global "tracker" and "xm" variables can be found virtually
+everywhere in the source code.
+
+@node Synchronization of Audio and GUI, How the audio subsystem works, General Architecture, Top
+@chapter Synchronization of Audio and GUI
+
+Since mixing buffer sizes can't be turned down as low as under primitive
+operating systems such as DOS, special care must been taken to take the
+audio latency into account.
+
+The audio thread thus keeps a list of recently reached pattern positions
+and their occurence in the mixed audio output stream. The GUI thread
+then checks periodically (track-editor.c::tracker_timeout(),
+scope-group.c::scope_group_timeout()) for the current position of the
+soundcard in the output stream and calculates which pattern position
+corresponds to that time. The get_play_time() method in output drivers
+is the key for this to work correctly. The lists are handled through the
+time buffer interface, see time-buffer.[ch].
+
+The oscilloscope monitors are handled in a similar way through some ring
+buffers. This is documented in audio.h, for example. time-buffer can't
+be used here because scope data is continuous and is accessed from the
+GUI thread in more than one location.
+
+Certain other events are handled through the event waiter interface (see
+event-waiter.h for an overview).
+
+@node How the audio subsystem works, Driver API, Synchronization of Audio and GUI, Top
+@chapter How the audio subsystem works
+
+Module playing is initialized by the GUI thread sending a message
+AUDIO_CTLPIPE_PLAY_SONG, for example. The audio thread then opens the
+driver module (with new() method of the driver) and pass it a callback,
+which will be called as soon as the sound card is accepting new data.
+This callback (actually audio-subs.c::audio_request_data() for a
+playback driver) sends a message AUDIO_CTLPIPE_DATA_REQUESTED to the
+mixer pipe.
+
+After opening the output driver, various other things are initialized in
+audio.c::audio_prepare_for_playing(). After that, an acknowledgement
+message is sent back to the GUI thread, which is in playing mode from
+then on (indicated by the global variable gui.c::gui_playing_mode).
+
+After that, the audio thread goes back into its main poll() loop, which
+also waits for the driver callback action now. Once this callback is
+triggered (AUDIO_CTLPIPE_DATA_REQUESTED is received),
+audio.c::audio_mix() (defined in audio.h) is called to prepare a new
+part of the sample output stream in any format and bitrate it
+desires, which is then output.
+
+Calling the XM player at the right moment and handling the pitch bending
+feature is all done in audio_mix() which should be rather
+straight-forward to read.
+
+Interesting is also the interaction between xm-player.c and the rest of
+the audio subsystem. There are some routines in audio.c starting with
+driver_*, like driver_startnote, driver_setfreq. xm-player.c calls these
+instead of the corresponding routines in the mixer because this way, a
+modularized mixer system could be installed lateron. You can find more
+about the Mixer API later in this document.
+
+@node Driver API, Mixer API, How the audio subsystem works, Top
+@chapter Driver API
+
+The driver API is separated into two branches: output and input
+(sampling) drivers. Input drivers are usually simpler, because they
+don't have to include the mechanisms necessary for synchronization of
+the audio output stream with the GUI. As a rule, an input driver create
+its own thread when it is active. All supporting code is wrapped in
+DRIVER_THREAD_* macros in drivers/driver-subs.h file. The use of these
+macros is rather self-explaining, see for example, drivers/alsa1x.c or
+drivers/oss.c file. Jack input driver is the exception, it create a thread
+on its own to match the Jack sound architecture.
+
+Note that the current API doesn't make any provisions for MIDI
+output. First and foremost, it must be thought about the synchronization
+of MIDI output with mixed (DSP) output as the most important aspect; the
+central audio code in audio.c hasn't been designed with this in mind
+either. The MIDI input API actually emulates the keyboard key presses.
+
+Also not accounted for, but related to the MIDI issue, are wavetable
+devices like the GUS which can play multiple samples on their own. But
+since hardware like this is more and more becoming extinct and CPU power
+rises, I don't think that supporting this is important any longer,
+especially once ST will be extended to support effect plug-ins which
+can't be rendered by the audio hardware but must be calculated using the
+CPU!
+
+@section Adding drivers to the source tree
+
+You must add checks for any libs and includes in configure.in,
+add the driver to the drivers
+list in main.c, and finally add all the files belonging to your driver
+(should be only one) to drivers/Makefile.am. Now you still have to write
+the code, that's what the two next sections are about.
+
+@section Output drivers
+
+The st_driver structure, defined driver.h must be globally
+defined in your source file. It must contain valid pointers to all the
+functions and a unique entry in the name field. The rest of the
+variables and functions in your source file should be defined static so
+as to hide them from the rest of the program.
+
+You can keep the *settings functions empty at first, adding the right
+code here shouldn't be a problem when you compare with oss.c.
+
+The first function you should write is new(), which allocates a new
+object and initializes it with default settings. getwidget() can stay
+empty for as long as you don't want the user to change settings.
+destroy() function releases the resources allocated by new() function.
+
+The next function you write should be open(), which opens the device
+according to the settings in the object structure. release() does the
+opposite. open() should install the callback mentioned earlier, which is
+the function you're going to write now. That's it, you should have a
+working minimal driver now.
+
+There could be also a pair of functions, activate(), which is called
+when the driver is selected as the current driver being used, and
+deactivate() which is opposite to activate(). activate() can do some
+preparatory work like establishing connection with a sound server, start
+servicing thread and so on, deactivate() can undo things done by
+activate().
+
+The next important function is get_play_time() which is necessary for the
+GUI to synchronize with the audio output. This might require some
+experimentation to get right. get_play_rate() should return the current
+sample rate.
+
+Now you can start adding the settings widget and add code to the load /
+save settings functions.
+
+@section Input drivers
+
+Input driver API is very similar to that of an output driver. Input and
+output drivers can even share a large part of code (see alsa1x.c or oss.c
+for example). The way how the input driver organizes its servicing thread
+is described above.
+
+@node Mixer API, Sample Editor Extensions, Driver API, Top
+@chapter Mixer API
+
+To be written. Two mixers are already available; shouldn't be hard to
+understand how it works. Basically it's really independent of the rest
+of the tracker.
+
+@node Sample Editor Extensions, Contributing Code, Mixer API, Top
+@chapter Sample Editor Extensions
+
+ST can process samples using external programs. Such a program should be
+capable to communicate through STDIN and STDOUT and support 16-bit signed
+integer sample format. Communication details are specified in XML files
+with .menu extension placed in extensions/sample-editor/ subdirectory. As
+an example various sample processing facilities using sox program
+described in sox.menu file. Generally, each .menu file corresponds to a
+submenu in Edit->Extensions menu of the ST Sample Editor.
+
+The format of .menu file is rather self-explaining. Normaly .menu file
+contains one <menu></menu> root node (but may contain several such nodes)
+and one <command></command> node describing the base of the command line.
+In the sox.menu example one can see how sox is instructed to work with
+raw data streams using STDIN and STDOUT with given sample rate and number
+of channels (also see `Parameters substitution' section).
+
+The root menu node can contain submenus; in the given examle sox
+processing functions are divided into some groups. Each (sub)menu can
+also contain menuitems which correspond to individual processing options.
+Each menuitem describe a dialog window for parameters setting and rules
+for passing them to the command line. One can guess how parameter entries
+expands into dialog lines and fragments of the command line by comparing
+sox.menu with respective dialog windows and sox manual. Some sox effects
+have quite sophisticated syntax, so format of .menu files was developed
+to be flexible to implement most of sox facilities.
+
+@section Parameters substitution
+
+Some sample parameters can be passed from ST to the processing program
+using substitutions in the .menu file. These parameters are:
+
+%r --- sample rate
+%l --- sample length
+%t --- sample duration in seconds (floating-point number)
+%d --- sample duration decreased by tiny amount of time to work around
+some sox bugs
+%c --- number of sample channels
+
+These parameters can be used both in the command node and in the
+individual parameters included from menu items.
+
+@section Installation a new extention
+
+To install a new extension one does not need to recompile ST. The only
+thing to be done is writing a new .menu file, placing it to the
+appropriate location (%prefix/share/soundtracker/extensions/sample-editor
+for system-wide extensions, or ~/.soundtracker/extensions/sample-editor
+for per-user extensions. These paths can be edited and new ones added
+using GUI settings::Paths and Folders) and restarting ST.
+
+@node Contributing Code, , Sample Editor Extensions, Top
+@chapter Contributing Code
+
+Please follow these rules if you want to donate code to the
+SoundTracker project:
+
+@itemize @bullet
+@item Coding Style. I prefer 4-space tabulators, and an indentation style
+like this:
+
+@example
+	if(something) @{
+	    work();
+	@}
+@end example
+
+instead of:
+
+@example
+	if (something)
+	  @{
+	    work ();
+	  @}
+@end example
+
+If you're using Emacs, you can simply use "M-x c-set-style cc-mode"
+
+@item Add yourself to the AUTHORS file.
+
+@item Add a ChangeLog entry.
+
+@item Do a "make dist" in the main directory. This generates a new archive
+containing your changes. Do NOT send me the whole archive, instead:
+
+@item Generate a patch. Unpack the previously generated archive and the
+original archive (into some other directory), and use
+
+@example
+	diff -urN @{original-directory@} @{your-directory@} > patch
+@end example
+
+to generate a file containing only your changes, and no auto-generated
+files.
+
+@item Remove the `po' directory patches and patches to all auto-generated
+files (Makefile, Makefile.in, configure.log etc.) from the diff (that's
+what usually makes the patch unnecessarily large). Or just remove the po
+directories before generating the diff.
+
+@item Send the patch to the `soundtracker-discuss' mailing-list, if you
+want feedback from other users. If you're
+not subscribed, then subscribe first (see README file). Mail it directly
+to the maintainer (`mutab0r@@rambler.ru') instead of to the list if it's large. Please explain what the patch changes.
+
+@end itemize
+
+@bye
+

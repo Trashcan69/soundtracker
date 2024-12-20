@@ -1,0 +1,133 @@
+General malloc procedure with oom check
+
+Masking: shorten Russian translation
+
+Bug: if one press a note key in the Sample Editor when the module is being played,
+module playback stops while the tracker state remains "playing module".
+Also if the program is just started, in the Sample Editor the first key press doesn't
+trigger playing, mixer position is stopped at 0.
+
+Relnote and Finetune spins in the ext editor get sometimes blocked
+
+Envelopes' position indication (like mixer position)
+
+Multiple selection in the Sequence Editor
+Unused Patterns list in the Seq. Ed: DND between main and unused lists
+
+Sample editor navigation: small preview with navigation (ctrl + middle button)
+
+Indicate the portamento on the clavier like it's done in FT2.
+
+Batch processor instead of existing Transposition Tool. From somewhere:
+"Another thing that would be useful would be a sort of programmable range
+selector, where you could select a bunch of notes and/or instrument/sample
+combinations and you could perform operations such as:
+clear/increment/decrement note/volume/effect across track/pattern/song
+(only for this list of instruments) (only for these notes)"
+
+When extra parametrs of instrument will be supported (like tremolo, 
+layers): redesign instrument editor. In the scrolled container: vol. 
+env, pan. env, other stuff in a separate section.
+
+If will be lacking keys: allow overlapping keys (the same key has different meaning depending
+on conext, keys.c->keys_get_key_meaning() sould accept also context indicator)
+
+Would it be possible to copy the memory address and the data type 
+(instrument, pattern selection, wave selection...) into the 
+regular clipboard buffer, in text form? Or would it cause a 
+segfault if the other instance tried to access the buffer?
+
+I know to few about all this. Can the X clipboard handle anything 
+other than text, at all? I've just checked: Gnoise can't copy 
+sound between two instances, Gimp can't copy image data between 
+two instances... This seems to be a general problem :o(
+
+Overlaping mode for displaying stereo data (useful for scopes)
+
+I also have an
+idea to paint various effects (and maybe instruments) with the different
+colors for better distinguishability.
+
+And the another idea I have for future -- to make the fx command switching
+various types of interpolation. 
+
+...make a way for soundtracker to launch and
+communicate with an existing standalone editor?
+
+In instrument/sample/maybe even module loading dialog single click to preview 
+the instance, double click to load (optionally)
+
+Play/Play pat/Stop/arrows icons from Gtk+/Gnome icon theme (optional).
+
+1) Acquire focus on file name entry when activating file selection page.
+2) "Arrows" cursor keys support in file selection (keyboard navigation).
+These two items are not possible with the actual Gtk File Chooser. In
+order to implement these we should develop our own widget with the
+required capabilities.
+
+Modular sound drivers: remove dummy input; instead disable sampling when no
+input drivers are loaded.
+
+.pat (and .sf2) instrument loader: ask, which layer is to be loaded (until the
+multilayer instruments will be suported)
+
+"Through" song scrolling (between the beginning and the end of the neighboring patterns).
+
+Full-screen mode: semi-transparent scopes above the upper tracks' part in the playing mode.
+
+Fix modules with broken samples or patterns. Develop an universal correlative seeking
+procedure with adjustable threshold.
+
+Looping factory: loop points adjustment using FFT.
+
+Sample editor: Loops should be drawn not by sample display itself rather by
+additional CustomDraw routines.
+
+Before shared samples support (and even before the above item): develop
+STSample on a top of GObject, with signals like "data_changed",
+"loop_changed".
+
+MIDI input improvement: per channel instrument setting (on Program Change event)
+
+Support for MIDI output. FT2 clone actually doesn't have this. 
+Additional time buffers are required (or operate with existing channels' 
+buffers).
+
+Hide all private fields of ST own widgets (tracker, playlist,..) inside private structures
+not seen from main sources. Have a look on Gtk sources.
+
+**** XXM (extra extended module) ****
+
+Improvements that require a new file format ".xxm", meta-module. This 
+format will include the XML meta-file containing some parameters that 
+are not included in the usual XM file as well as a reference to some 
+XM, which contains the actual module. So one can open the XM itself 
+with some features lost. Also there is possible when several XXMs refer 
+to the same XM file.
+
+- "Mixing desk": a tab with volume and panning controls for each 
+instrument as well as for groups of channels (the grouping is 
+arbitrary, user-defined);
+- Shared sample pool: some instruments can use the same sample (with 
+different envelopes, volume settings etc). Also two (or more) samples (even of different
+instruments) can share the same data with different envelopes, loops and so on. Instruments
+can even be stored outside the module to provide instruments' sharing between some
+modules. At the instrument modification: choose either to modify the external instrument
+itself (global change) or to make a local copy (embed);
+- Maybe even instruments with volume layers and interpolation. Extra 
+samples stored as usual, extra maps --- in XML;
+- Tune table for each halftone with some presets (equal, just,...).
+Maybe even before xxm, but not kept together with module;
+- DSP procedures chains can be applied to channel groups
+- Extra instruments' fields like permanent tremolo (supported in GUS patches).
+- Subsample loop
+- Assign a name and a comment to each pattern (sequence editor)
+- Stereo enchancer (optional on the particular channels): not only
+volume, but also delay (base and depth can be set). Even with old
+replayer, slightly modified.
+- Such "fine delay" can be used also in triggers. Looking like 
+standard XM line, triggers can use some extra effects; multiple effects also 
+can be implemented as the trigger description is coded using XML. This 
+also will prepare the track editor to work with multiple effects.
+New XMNote fields, pointer fxarray indicates that multiple FX are used if !NULL, the first element of the
+array is number of FX, then effects follow

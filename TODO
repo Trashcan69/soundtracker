@@ -1,0 +1,37 @@
+
+Directly after SoundTracker has started, pressing the key "Alt" leads to
+(soundtracker:3038): Gtk-CRITICAL **: IA__gtk_widget_event: assertion
+'WIDGET_REALIZED_FOR_EVENT (widget, event)' failed -> this is somehow related to
+the FileChooserWidget used in file-operations.c.
+
+improve font selection dialog: show only monospace / fixed-width fonts: GTK+3
+has https://developer.gnome.org/gtk3/stable/GtkFontChooserDialog.html which
+permits installation of a font filter, which gets the PangoFontFamily we can
+filter on.
+
+do we need ChangeLog any longer, now that we're using git?
+
+Find out why the x86-assembly mixer doesn't work any more.
+
+setuid still needed for good performance? 
+
+fix playback error in mod.alice d.
+
+3xx bug (Michaël D. <ikari@ifrance.com>)
+
+> There are modules which also use octaves 2 and 6. They are not
+> created using Protracker, but when they are loaded into ST, they
+> are identified as Protracker modules. The loader even works with
+> these.
+
+> > >  * the RelNote settings also work in PT mode.
+> >
+> > ProTracker has no RelNote.
+>
+> The Soundtracker GUI has it. It is not disabled. (But that is
+> not impotant, just strange.)
+
+> > ProTracker doesn't have a key-off command.
+>
+> There is also no such thing as an H-8 note ;o) (same thing as
+> with the RelNote)

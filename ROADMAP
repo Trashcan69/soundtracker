@@ -1,0 +1,38 @@
+1.0.x
+
+Jack control modes: slave, master, autonomous;
+
+Fix modules with broken samples or patterns. Develop an universal correlative seeking
+procedure with adjustable threshold.
+
+1.1.x
+
+Modularized file operations;
+
+Probably dynamic sound drivers' loading;
+
+Plugins in the sample editor;
+
+Preparation for modularization:
+1) Separate libstsubs with gui-subs.c, st_subs and recode.c; remove endian-conv.c;
+2) Free gui-subs.c from references to mainwindow;
+3) Check dependency on driver-inout.h/audio.h in headers and other interdependencies
+between headers. playback_driver, editing_driver -> audioconfig.c, in audio.c they are extern.
+current_driver is internal in audio.c, audio_get_play_time() with -1 on failure,
+separate audio-defs.h from audio.h Including gtk.h in gui.h isn't needed since it's included in gui-subs.h
+4) GUI settings should be properties of a special GObject, with hooks to "notify::_name_" if necessary.
+Check all settings to be correctly implemented (some of them should not be GUI settings) Just save all
+settings on exit, remove the checkbox
+
+5) Module loaders: flexible achive handling using XML specifications instead of hardcoded (even cascading
+with tar). Automatic archive detection, then appropriate loader invocation after extraction.
+
+1.2.x
+
+MetaModule (.xxm) related stuff, see TODO.extra
+New features: DSP can be applied to channel groups in the Mixing Desk; instrument triggers (limited
+function set, but features like NNA will be implemented and not only).
+
+2.x
+
+New object-oriented module player with per-channel rendering. The tracker itself is still (x)xm-based.

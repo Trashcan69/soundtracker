@@ -1,0 +1,17 @@
+Source: soundtracker
+Section: audio
+Priority: optional
+Maintainer: Marcel Jueling <Marcel.Jueling@gmx.de>
+Build-Depends: autotools-dev, libselinux1-dev, libasound2-dev, libasyncns-dev, libcaca-dev, libdbus2.0-cil-dev, libflac-dev, libgcrypt20-dev, libghc-bzlib-dev, libghc-libxml-sax-dev, libgpg-error-dev, libjson-c-dev, liblzma-dev, libncursesw5-dev, libogg-dev, libpcre2-dev, libpulse-dev, libsdl1.2-dev, libslang2-dev, libsndfile1-dev, libsystemd-dev, libtinfo-dev, libvorbis-dev, libwrap0-dev, libxau-dev, libxcb1-dev, libxdmcp-dev, libxext-dev, libgtk2.0-dev, libgoocanvas-dev
+Standards-Version: 4.5.1
+Homepage: http://www.soundtracker.org
+
+Package: soundtracker
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, bmake, mk-configure, libselinux1, libasound2, libasyncns0, libcaca0, libdbus2.0-cil, libflac8, libgcrypt20, ghc, libgpg-error0, libjson-c3 | libjson-c5, liblzma5, libncursesw5, libogg0, libpcre2-posix0 | libpcre2-posix2, libpulse0, libsdl1.2debian, libslang2, libsndfile1, libsystemd0, libtinfo6, libvorbis0a, libwrap0, libxau6, libxcb1, libxdmcp6, libxext6, libgoocanvas3, gnome-accessibility-themes, gnome-themes-extra, gnome-themes-extra-data
+Description: pattern-oriented music editor
+ SoundTracker is a pattern-oriented music editor (similar to the DOS
+ program 'FastTracker'). Samples are lined up on tracks and patterns
+ which are then arranged to a song. Supported module formats are XM and
+ MOD; the player code is the one from OpenCP. A basic sample recorder
+ and editor is also included.

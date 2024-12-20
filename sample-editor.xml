@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkMenuBar" id="sample_editor_menu">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkMenuItem" id="menuitem1">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">_File</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu" id="file_menu">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImageMenuItem" id="open_smp">
+                <property name="label" translatable="yes">_Open&#x2026;</property>
+                <property name="visible">False</property>
+                <property name="use_underline">True</property>
+                <property name="image">image1</property>
+                <property name="use_stock">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="save_wav">
+                <property name="label" translatable="yes">_Save WAV&#x2026;</property>
+                <property name="visible">False</property>
+                <property name="use_underline">True</property>
+                <property name="image">image2</property>
+                <property name="use_stock">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="save_reg">
+                <property name="label" translatable="yes">Save _Region&#x2026;</property>
+                <property name="visible">False</property>
+                <property name="use_underline">True</property>
+                <property name="image">image3</property>
+                <property name="use_stock">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparatorMenuItem" id="fileop_sep">
+                <property name="visible">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem4">
+                <property name="label" translatable="yes">S_ampling&#x2026;</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image4</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_monitor_clicked"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="edit_menu">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">_Edit</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu" id="edit_submenu">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem5">
+                <property name="label">gtk-cut</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <signal name="activate" handler="sample_editor_cut_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem6">
+                <property name="label">gtk-copy</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <signal name="activate" handler="sample_editor_copy_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem7">
+                <property name="label">gtk-paste</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <signal name="activate" handler="sample_editor_paste_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem8">
+                <property name="label">gtk-delete</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <signal name="activate" handler="sample_editor_remove_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem9">
+                <property name="label" translatable="yes">C_lear Sample</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image5</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_clear_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparatorMenuItem" id="separator2">
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem10">
+                <property name="label" translatable="yes">Re_verse</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image6</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_reverse_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem11">
+                <property name="label" translatable="yes">C_rop</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image7</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_crop_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem12">
+                <property name="label" translatable="yes">_Trim</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image8</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_trim_dialog"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem3">
+                <property name="label" translatable="yes">_Normalize</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_normalize"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem4">
+                <property name="label" translatable="yes">_Volume Ramp&#x2026;</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_open_volume_ramp_dialog"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem9">
+                <property name="label" translatable="yes">A_GC&#x2026;</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_open_agc_dialog"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem8">
+                <property name="label" translatable="yes">Insert _Silence&#x2026;</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_insert_silence"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="loop_factory_menuitem">
+                <property name="label" translatable="yes">Loop _Factory&#x2026;</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image20</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="loop_factory_dialog"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="selection_menu">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">_Selection</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu" id="selection_submenu">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem13">
+                <property name="label" translatable="yes">Select _All</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image14</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_select_all_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem14">
+                <property name="label" translatable="yes">Select _None</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image9</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_select_none_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="menuitem10">
+                <property name="label" translatable="yes">To the L_eft</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_selection_left_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="menuitem11">
+                <property name="label" translatable="yes">To the R_ight</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_selection_right_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="menuitem12">
+                <property name="label" translatable="yes">_From Loop</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_selection_from_loop_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="menuitem6">
+                <property name="label" translatable="yes">Set as _Loop</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="sample_editor_selection_to_loop_clicked"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="view_menu">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">_View</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu" id="view_submenu">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem15">
+                <property name="label" translatable="yes">Zoom to _Selection</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image10</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_zoom_to_selection_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem16">
+                <property name="label" translatable="yes">Show _All</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image11</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_show_all_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem17">
+                <property name="label" translatable="yes">Zoom _In (+50%)</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image12</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_zoom_in_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="imagemenuitem18">
+                <property name="label" translatable="yes">Zoom _Out (-50%)</property>
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="image">image13</property>
+                <property name="use_stock">False</property>
+                <signal name="activate" handler="sample_editor_zoom_out_clicked"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkToolbar" id="sample_editor_toolbar">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkToolButton" id="open_smp_tbutton">
+        <property name="label" translatable="yes">Open&#x2026;</property>
+        <property name="visible">False</property>
+        <property name="icon_widget">image1a</property>
+        <property name="tooltip_text" translatable="yes">Open Sound File</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="save_wav_tbutton">
+        <property name="label" translatable="yes">Save WAV&#x2026;</property>
+        <property name="visible">False</property>
+        <property name="icon_widget">image2a</property>
+        <property name="tooltip_text" translatable="yes">Save as WAV</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="toolbutton3">
+        <property name="label" translatable="yes">Sampling&#x2026;</property>
+        <property name="visible">True</property>
+        <property name="icon_widget">image4a</property>
+        <property name="tooltip_text" translatable="yes">Sampling</property>
+        <signal name="clicked" handler="sample_editor_monitor_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkSeparatorToolItem" id="sti1">
+        <property name="visible">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="toolbutton4">
+        <property name="visible">True</property>
+        <property name="stock_id">gtk-cut</property>
+        <property name="tooltip_text" translatable="yes">Cut</property>
+        <signal name="clicked" handler="sample_editor_cut_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="toolbutton5">
+        <property name="visible">True</property>
+        <property name="stock_id">gtk-copy</property>
+        <property name="tooltip_text" translatable="yes">Copy</property>
+        <signal name="clicked" handler="sample_editor_copy_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="toolbutton6">
+        <property name="visible">True</property>
+        <property name="stock_id">gtk-paste</property>
+        <property name="tooltip_text" translatable="yes">Paste</property>
+        <signal name="clicked" handler="sample_editor_paste_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="delete_tbutton">
+        <property name="visible">True</property>
+        <property name="stock_id">gtk-delete</property>
+        <property name="tooltip_text" translatable="yes">Delete</property>
+        <signal name="clicked" handler="sample_editor_remove_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="toolbutton8">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Clear</property>
+        <property name="icon_widget">image5a</property>
+        <property name="tooltip_text" translatable="yes">Clear Sample</property>
+        <signal name="clicked" handler="sample_editor_clear_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkSeparatorToolItem" id="sti2">
+        <property name="visible">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="select_all_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Select All</property>
+        <property name="icon_widget">image14a</property>
+        <property name="tooltip_text" translatable="yes">Select All</property>
+        <signal name="clicked" handler="sample_editor_select_all_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="select_none_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Select None</property>
+        <property name="icon_widget">image9a</property>
+        <property name="tooltip_text" translatable="yes">Select None</property>
+        <signal name="clicked" handler="sample_editor_select_none_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkSeparatorToolItem" id="sti3">
+        <property name="visible">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="zoom_sel_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Zoom to Sel</property>
+        <property name="icon_widget">image10a</property>
+        <property name="tooltip_text" translatable="yes">Zoom to Selection</property>
+        <signal name="clicked" handler="sample_editor_zoom_to_selection_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="show_all_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Show All</property>
+        <property name="icon_widget">image11a</property>
+        <property name="tooltip_text" translatable="yes">Show All</property>
+        <signal name="clicked" handler="sample_editor_show_all_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="zoom_in_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Zoom In</property>
+        <property name="icon_widget">image12a</property>
+        <property name="tooltip_text" translatable="yes">Zoom In (+50%)</property>
+        <signal name="clicked" handler="sample_editor_zoom_in_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="zoom_out_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Zoom Out</property>
+        <property name="icon_widget">image13a</property>
+        <property name="tooltip_text" translatable="yes">Zoom Out (-50%)</property>
+        <signal name="clicked" handler="sample_editor_zoom_out_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkSeparatorToolItem" id="sti4">
+        <property name="visible">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="go_home_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Home</property>
+        <property name="icon_widget">image16a</property>
+        <property name="tooltip_text" translatable="yes">Go to Beginning</property>
+        <signal name="clicked" handler="go_home_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="go_end_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">End</property>
+        <property name="icon_widget">image17a</property>
+        <property name="tooltip_text" translatable="yes">Go to End</property>
+        <signal name="clicked" handler="go_end_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="go_loop_beg_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">End</property>
+        <property name="icon_widget">image18a</property>
+        <property name="tooltip_text" translatable="yes">Go to Loop Start</property>
+        <signal name="clicked" handler="go_loop_beg_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="go_loop_end_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">End</property>
+        <property name="icon_widget">image19a</property>
+        <property name="tooltip_text" translatable="yes">Go to Loop End</property>
+        <signal name="clicked" handler="go_loop_end_clicked"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkSeparatorToolItem" id="sti5">
+        <property name="visible">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleToolButton" id="play_loop_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Play Loop</property>
+        <property name="icon_widget">image15a</property>
+        <property name="tooltip_text" translatable="yes">Play Loop in Selection</property>
+        <signal name="clicked" handler="sample_editor_play_loop_toggled"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="loop_factory_tbutton">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Loop Factory</property>
+        <property name="icon_widget">image20a</property>
+        <property name="tooltip_text" translatable="yes">Open Loop Factory window</property>
+        <signal name="clicked" handler="loop_factory_dialog"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-open</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image1a">
+    <property name="visible">True</property>
+    <property name="stock">gtk-open</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-save-as</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image2a">
+    <property name="visible">True</property>
+    <property name="stock">gtk-save-as</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-save-as</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="icon_name">audio-input-microphone</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image4a">
+    <property name="visible">True</property>
+    <property name="icon_name">audio-input-microphone</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="stock">gtk-clear</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image5a">
+    <property name="visible">True</property>
+    <property name="stock">gtk-clear</property>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="icon_name">object-flip-horizontal</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image7">
+    <property name="visible">True</property>
+    <property name="icon_name">st-crop</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image8">
+    <property name="visible">True</property>
+    <property name="stock">gtk-cut</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image9">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-none</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image9a">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-none</property>
+  </object>
+  <object class="GtkImage" id="image10">
+    <property name="visible">True</property>
+    <property name="icon_name">view-fullscreen</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image10a">
+    <property name="visible">True</property>
+    <property name="icon_name">view-fullscreen</property>
+  </object>
+  <object class="GtkImage" id="image11">
+    <property name="visible">True</property>
+    <property name="icon_name">zoom-original</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image11a">
+    <property name="visible">True</property>
+    <property name="icon_name">zoom-original</property>
+  </object>
+  <object class="GtkImage" id="image12">
+    <property name="visible">True</property>
+    <property name="icon_name">zoom-in</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image12a">
+    <property name="visible">True</property>
+    <property name="icon_name">zoom-in</property>
+  </object>
+  <object class="GtkImage" id="image13">
+    <property name="visible">True</property>
+    <property name="icon_name">zoom-out</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image13a">
+    <property name="visible">True</property>
+    <property name="icon_name">zoom-out</property>
+  </object>
+  <object class="GtkImage" id="image14">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-all</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image14a">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-all</property>
+  </object>
+  <object class="GtkImage" id="image15a">
+    <property name="visible">True</property>
+    <property name="icon_name">st-sample-play-loop</property>
+  </object>
+  <object class="GtkImage" id="image16a">
+    <property name="visible">True</property>
+    <property name="icon_name">go-first</property>
+  </object>
+  <object class="GtkImage" id="image17a">
+    <property name="visible">True</property>
+    <property name="icon_name">go-last</property>
+  </object>
+  <object class="GtkImage" id="image18a">
+    <property name="visible">True</property>
+    <property name="icon_name">st-sample-go-loop-beg</property>
+  </object>
+  <object class="GtkImage" id="image19a">
+    <property name="visible">True</property>
+    <property name="icon_name">st-sample-go-loop-end</property>
+  </object>
+  <object class="GtkImage" id="image20">
+    <property name="visible">True</property>
+    <property name="icon_name">st-sample-loop-factory</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="image20a">
+    <property name="visible">True</property>
+    <property name="icon_name">st-sample-loop-factory</property>
+  </object>
+  <object class="GtkImage" id="select-all0">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-all</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="select-all1">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-all</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="select-none0">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-none</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="select-none1">
+    <property name="visible">True</property>
+    <property name="icon_name">st-select-none</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="show-sel0">
+    <property name="visible">True</property>
+    <property name="icon_name">view-fullscreen</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="show-sel1">
+    <property name="visible">True</property>
+    <property name="icon_name">view-fullscreen</property>
+    <property name="icon-size">1</property>
+  </object>
+</interface>

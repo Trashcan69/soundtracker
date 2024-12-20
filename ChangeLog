@@ -1,0 +1,2492 @@
+2024-03-17 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/keys.[ch], app/track-editor.c: Shortcuts for going
+	to the next / previous position in the pattern order table are made
+	configurable.
+
+	* Released v1.0.5
+
+2024-01-04 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.5-pre2
+
+2024-01-03 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.[ch], app/xm.c: Added optional check whether a
+	module being saved is fully FT2-compatible;
+
+	* app/gui.c, app/main.c, app/xm.[ch]: Decreased number of warnings
+	issued on file operations' failures;
+
+	* app/xm.[ch]: Archives support fixed and improved;
+
+	* app/sample-editor.c: Dialog sizes are now tracked their actual
+	content;
+
+	* sample-editor.ui, app/sample-editor.c: Stereo samples balance
+	adjustment is implemented.
+
+2023-12-30 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/loop-factory.h, app/sample-editor-extensions.h: Headers are
+	protected from multiple inclusion;
+
+	* app/track-editor.c: Code cleanup.
+
+2023-12-13 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/time-buffer.c: Fixed occasional crash caused by a race
+	condition;
+
+	* app/sample-editor.c: Raw input extended for 24- and 32-bit integer,
+	single and double precision float data. Implemented sample locking /
+	unlocking while some stereo editing routines.
+
+	* app/st-subs.[ch], app/xm.c: Resolution conversion routines are made
+	more universal;
+
+	* A message is marked translatable.
+
+2023-11-05 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.5-pre1
+
+	* app/sample-editor.c: Fixed occasional instrument name update
+	sticking during undo / redo.
+
+2023-11-03 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/st-subs.[ch]: Sample resolution conversion is made more
+	flexible;
+
+	* app/sample-editor.c: ST now can load sound samples with > 16 bit
+	resolution, including floating-point formats; a couple of undo / redo
+	related bugs are fixed; fixed 8-bit sound samples loading with
+	Audiofile;
+
+	* app/track-editor.c, soundtracker.ui: Exponential effects
+	interpolation is implemented;
+
+	* app/track-editor.c: Fixed effects interpolation;
+
+	* app/sample-editor.c, soundtracker.ui: Some keybindings are changed
+	to avoid conflicts with Gtk menu shortcuts.
+
+2023-10-31 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor-extensions.c, app/sample-editor.[ch]: The last
+	sample processing operation can be repeated using a shortcut;
+
+	* app/sample-editor.c: Fixed buggy loop points recalculation on the
+	silence insertion;
+
+	* app/gui.c, app/track-editor.[ch]: Masking for cutting operation is
+	implemented;
+
+	* app/gui.c: Column headings in the masking setup act as buttons for
+	switching the whole column.
+
+2023-10-12 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.c: gui_subs_create_slider_full() is made more
+	flexible;
+
+	* app/module-info.c: Stereo samples mixing is implemented;
+
+	* sample-editor.ui, app/sample-editor.c: All Sample Editor functions
+	are now compatible with stereo sample. Some new specific stereo
+	functions are added, as well as converting between mono and stereo
+	samples;
+
+	* app/st-subs.[ch]: Basic ST routines are expanded to support stereo
+	samples, also routines for converting between various stereo formats
+	are added;
+
+	* app/sample-editor-extensions.c: Sample Editor extensions now can
+	operate with stereo samples. At this point ST is fully compatible
+	with XM extension for stereo samples.
+
+2023-10-12 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.c: Code optimization;
+
+	* app/loop-factory.c, app/menubar.c, app/mixer.h,
+	app/mixers/integer32.c, app/sample-editor.c, app/st-subs.c,
+	app/tracer.c, app/xm.[ch], app/mixers/kbfloat.c: preparation for
+	XM with stereo samples: uniform handling of sample flags, including
+	STEREO flag; saving, loading and playing of stereo samples is
+	implemented;
+
+	app/mixers/kbfloat-core.[ch]: Code for dealing with stereo samples is
+	added;
+
+	app/mixer.h, app/sample-display.c, app/sample-editor.c: Stereo
+	samples are now correctly displayed;
+
+	app/loop-factory.c, app/sample-editor.[ch]: Amplitudes of both stereo
+	channels are indicated in the Sample Editor status line.
+
+2023-10-01 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.4.
+
+2023-09-28 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.c: Fixed unsigned data formats visualization;
+
+	* app/playlist.c: Final fix of pattern length indication.
+
+2023-09-05 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Normalizing mode AGC works as is should. Also
+	the code is a little bit optimized;
+
+	* sample-editor.ui: "Trim..." menu entry is now ended with ellipses,
+	since it opend a dialog window.
+
+2023-08-07 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/playlist.c: Fix a bug introduced by the recent fix ;-)
+
+2023-08-04 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c, app/gui-settings.c, app/menubar.c,
+	app/sample-editor.c, extensions/sample-editor/sox.menu:
+	Message lines are fixed;
+
+	* app/gui.c, app/playlist.[ch]: Fixes related to actual pattern
+	length indication in the Sequence Editor.
+
+2023-07-24 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Fixed volume initiaization on scrolling start
+	with no specified value.
+
+2023-07-12 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.4-pre2.
+
+2023-07-02 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: A bug fixed that could lead to crash.
+
+2023-06-14 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Status line is improved.
+
+2023-03-31 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml: app/envelope-box.c, app/gui.[ch], app/history.c,
+	app/menubar.c, app/sample-editor.c, app/track-editor.c: GtkBuiler
+	files are renamed from *.xml to *.ui, also links to them as *.glade
+	are removed.
+
+2023-03-29 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml: A label is marked as translatable.
+
+2023-03-20 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/xm.c: Improved compatibility with FT2: when an XM or XI has
+	both Pingpong and Amiga loop flags, only Pingpong is left just like
+	FT2 does.
+
+2023-03-19 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/playlist.c: Fixed crash on module loading introduced by recent
+	code updates;
+
+	* app/instrument-editor.c: Fixed playing artiacts and even occasional
+	crash on playing an instrument just after it has been loaded.
+
+2023-02-28 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.4-pre1.
+
+2023-02-25 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.[ch]: API for paths settings is developed;
+
+	* app/gui-subs.[ch]: API improvement;
+
+	* app/preferences.[ch]: API for array of strings saving is
+	uncommented;
+
+	* app/gui.c, app/sample-display.[ch], app/sample-editor.[ch],
+	app/sample-editor-extensions.[ch], sample-editor.xml,
+	extensions/sample-editor/sox.menu: An ability to process samples with
+	an external editor (communiating by STD I/O) is implemented. The
+	respective menu entries and commands are set up using XML specs. As
+	an example, some SOX functions are implemented;
+
+	* soundtracker.xml: Menus are optimized;
+
+	* soundtracker.xml, app/gui.c, app/playlist.[ch], app/track-editor.c:
+	Full-screen mode is implemented.
+
+2023-01-27 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Exponential / reversed exponential volume fade
+	is implemented;
+
+	* app/playlist.c: A message string is corrected to avoid a conflict;
+
+	* app/module-info.c: Optional normalizing for samples mixing is
+	implemented;
+
+	* app/gui.c, app/instrument-editor.c, app/module-info.c,
+	app/playlist.c, app/st-subs.h, app/transposition.c, app/xm.[ch]:
+	API optimization;
+
+	* app/st-subs.[ch]: New API function st_for_each_note() is added
+	to facilitate batch patterns processing;
+
+	* app/menubar.c, soundtracker.xml: New module optimizer is developed.
+	It allows to tune optimization by many parameters;
+
+	* app/gui-settings.c, app/instrument-editor.c: GUI settings to
+	preserve instrument / sample name also act on cleaning;
+
+	* app/gui.[ch], app/transposition.c: Song logging API is made public;
+
+	* app/menubar.c: Adjusting all samples of an instrument / all
+	instruments volume can optinally also modified explicitly set volume
+	of notes in patterns.
+
+2023-01-03 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Activty indicator look is improved a little;
+
+	* app/envelope-box.c, app/gui.[ch]: Envelope box improvements:
+	envelope offsetting is implemented; editing buttons are rearranged;
+	a bug is fixed;
+
+	* app/gui-subs.[ch]: Lablled spin button API is made more flexible.
+
+2022-12-23 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Activty indicator is being shown while saving module as
+	WAV;
+
+	* app/playlist.[ch]: Playlist object encapsulation improved. List of
+	unused patterns is displayed;
+
+	* app/gui-subs.[ch], app/gui.c, app/module-info.c,
+	app/tracker-settings.c: Number of type casts is decreased;
+
+	* app/gui.c: Saving module to wav dialog is improved a little;
+
+	* app/sample-editor.c: Sampling rate can be specified while saving
+	sample to WAV;
+
+	* app/xm-player.c: Fixed PT mode pitch bug introduced recently.
+
+2022-12-17 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/instrument-editor.c: Added a hint to the clavier;
+
+	* app/xm-player.c: Fixed some perverted cased of the two FX, E9 and
+	ED, when they are applied without a note, but with a new instrument
+	specified. ST now is better compatible with FT2. XM player is speeded
+	up a little bit (overhead reduced).
+
+2022-12-15 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/xm-player.c: Fixed panning when playing .mod format with > 4
+	channels;
+
+	* soundtracker.xml, app/menubar.c: Batch-mode sample volume
+	adjustment is improved (volume can be now set to a value, not only
+	gained), also batch-mode panning setting is implemented.
+
+2022-12-10 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/loop-factory.c, app/sample-editor.[ch]; SampleEditorDisplay API
+	improved;
+
+	* app/sample-display.[ch], app/sample-editor.[ch]: Mixer position
+	indicator is now being drawn by SampleEditorDisplay;
+
+	* app/sample-display.[ch], app/sample-editor.c: SampleDisplay
+	encapsulation is improved;
+
+	* app/sample-display.[ch]: SampleDisplay is now capable to display a
+	sequence of chunks;
+
+	* app/sample-editor.[ch]: After the recording the whole sample is
+	displayed in the monitor window;
+
+	* app/track-editor.c: Moving notes up / down is implemented;
+
+	* app/envelope-box.c: Envelope inversion is implemented.
+
+2022-12-03 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/mixers/integer32.c, app/mixers/kbfloat-core.[ch],
+	app/mixers/kbfloat.c, app/audio.c, app/mixer.h, app/tracer.c:
+	Two-step sound rendering is implementing (each track is rendered
+	into its own buffer, then they are mixed together) with ability to
+	support virtual channels (not by xm player yet).
+
+2022-11-25 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.3;
+
+	* app/gui.c, app/instrument-editor.c: Fixed the crash on new module
+	loading when the Instrument Editor page is active;
+
+	* app/poll.[ch]: Removed functions which were never used.
+
+2022-11-13 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.c: Fixed potential bug caused by incorrect
+	signedness.
+
+2022-11-06 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c, app/drivers/driver-subs.h (derived from
+	app/drivers/driver-thread.h), app/drivers/irix-output.c,
+	app/drivers/oss.c, app/drivers/sun-input.c,
+	app/drivers/sun-output.c: double buffering is implemented for
+	recording to eliminame an artifact of the sampling monitor;
+
+	* app/scope-group.c: Code cleanup;
+
+	* app/track-editor.c: Fixed pasting with wrap.
+
+2022-10-18 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.c: Fixed sample monitor display mode setting;
+
+	* app/loop-factory.c: Fixed loop factory crash on sample display mode
+	change.
+
+2022-09-26 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/loop-factory.c: Loop Factory interface is improved a little;
+
+	* app/gui.c: Crash when rendering to a sample is fixed.
+
+2022-09-07 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Fixed compilation with no audio libs installed.
+	Soundtracker logo on the splash screen is now centered;
+
+	* app/tracker-settings.c: Fixed crash when removing "Monospace: from
+	the tracker font list;
+
+	* app/audio.c, app/tracer.c, app/xm-player.[ch]: Fixed tracer hang in
+	some looped modules.
+
+2022-07-22 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* sample-editor.xml, soundtracker.xml, app/gui-settings.c: GUI labels
+	are improved;
+
+	* app/sample-editor.c: Loop spin-buttons related fixes.
+
+2022-06-22 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.3-pre2.
+
+2022-06-21 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml, app/track-editor.c, app/tracker.c: A copy / cut
+	buffers viewer is added;
+
+	* sample-editor.xml, app/sample-editor.c: Better Sample Editor
+	buttons sensitivity handling depending on the particular sample
+	features;
+
+	* app/sample-editor.c: Bugfix (loop spin buttons disappeared in the
+	course of last updates);
+
+	* soundtracker.xml, app/menubar.c: Adjusting volume of all samples
+	is improved; volume of the particular instrument's samples can be
+	also adjusted at once;
+
+	* app/gui-settings.[ch], app/gui.c: Quick instrument selection now
+	uses Left Control key instead of Alt, also window showing up by
+	pressing and releasing Left Control is made optional. Some bugs are
+	fixed. Quick instrument selection is documented.
+
+2022-06-18 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/tracker.[ch]: Some API fucntions are added and bugs are fixed.
+
+2022-04-30 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Fixed "Go to the loop beginning / end"
+	functions; also fixed sample data pasting bug;
+
+	* app/gui-subs.[ch], app/loop-factory.c, app/playlist.c,
+	app/transposition.c: Propagation keyboard events from a dialog
+	window to the main window is implemented. For example, it allows
+	sample playing when the Loop Factory is active or undo / redo from
+	the Transposition Tool or Sequence Editor;
+
+	* app/module-info.c: Fixed module playing stop on the Extended
+	Editor collapsing;
+
+	* app/gui.c, app/track-editor.c: Fixed unwanting Instrument Selector
+	showing up after volume / parameter scroll with ALT + mwheel.
+
+2022-04-26 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Some icons are improved to look better with dark
+	desktop themes;
+
+	* app/envelope-box.c, app/gui-subs.c: Labelled spin buttons
+	creating code is made a little bit convenient;
+
+	* app/sample-display.c, app/sample-editor.[ch]: SampleEditorDisplay
+	widget is created (as an extension SampleDisplay). Some Sample Editor
+	API (spinbuttons) made available from outside;
+
+	* sample-editor.xml, app/gui-settings.c, app/gui.[ch],
+	app/loop-factory.[ch]: A new facility is added, called Loop Factory
+	to manipulate with loops. Currently is supports loop points position
+	optimization and data crossfading around the loop point to produce
+	click-free cycling.
+
+2022-04-25 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c, app/gui-subs.[ch], app/module-info.c,
+	app/playlist.c, app/tracker-settings.c: Some GUI API improvement,
+	the function for spin button creation with adjustment made
+	application-wide + some other code clean-ups and fixes.
+
+2022-01-21 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c, app/gui-subs.[ch]: Code for automatic
+	widget size determination is moved to the graphic library;
+
+	* app/gui.c: Quick instrument selection is implemented (see
+	doc/keybindings.odt for details);
+
+	* app/envelope-box.c, app/gui-subs.[ch], app/playlist.c,
+	app/tracker-settings.c: Code for image buttons is moved to the GUI
+	library;
+
+	* app/envelope-box.c: A canvas dragging bug is fixed.
+
+2022-01-17 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Fix: now it's possible to use H-7 note;
+
+	* app/sample-display.c: Fixed gaps in waveform drawing in min/max
+	mode;
+
+	* app/sample-editor.[ch]: Waveform value indication in the Sample
+	Editor is implemented. Sample Editor code is optimized, some
+	conflict between keybindings are fixed;
+
+	* app/xm-player.c: Fixed R (multiplying retrig) effect;
+
+	* app/gui.c: Fixed incorrect page switch in some cases after Enter
+	pressing in the File page;
+
+	* app/sample-editor.c, app/xm-player.c, app/xm.[ch]: Wrong undo after
+	sample panning changing is fixed. Also a dead code is detected and
+	removed from app/xm-player.c.
+
+2021-12-21 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.[ch]: Clavier code is revised to have better
+	encapsulation. Clavier drawing is optimized, some minor artifacts
+	are fixed;
+
+	* app/clavier.c, app/gui.c, app/instrument-editor.c: Keys' press /
+	release indication on the piano keyboard is improved, some minor
+	bugs are fixed.
+
+2021-12-20 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* sample-editor.xml, app/sample-editor.c: Automatic Gain Control
+	for sample processing is implemented; selection is preserved at
+	Undo / Redo operations; selection in the Sample Editor now can be set
+	from loop or to the right / left of the existing selection; better
+	switching between sensitive / insensitive Sample Editor menu entries
+	when the sample is empty; new Sample Editor navigaion options: go to
+	the sample start / end / loop start / loop end + keyboard scrolling;
+
+	* sample-editor.xml, app/gui-settings.[ch], app/gui-subs.[ch],
+	app/mixers/integer32.c, app/mixers/kbfloat.c, app/sample-editor.c,
+	app/tracer.c: Loops optionally can be played when they fits entirely
+	in the selection;
+
+	* app/gui.c: Local (e.g. serving the particular notebook pages)
+	keybindings have now higher priority than the global ones.
+
+2021-10-21 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.3-pre1.
+
+2021-10-19 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml, app/gui-settings.c, app/menubar.c: Instrument /
+	sample number indication in scopes is switched on / off directly from
+	Settings menu rather than from GUI Settings panel;
+
+	* app/clavier.c: Yet another crash fixed.
+
+2021-10-04 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/history.c: A check in history_test_collate() is added to
+	prevent a memory leak. It happened when a GtkSpinButton callback was
+	called from undo / redo procedure and extraneous memory allocation
+	took place;
+
+	* app/playlist.c: A small bug is fixed.
+
+2021-09-30 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/playlist.[ch]: Playlist is hardly redesigned to be
+	more object-oriented (with better incapsulation). Also it operates
+	with xm data (song length, repeat, patter order table) directly
+	rather than having own copies. And the most important thing: Pattern
+	sequence editor is implemented (right click on the playlist area)
+	with DND support.
+
+2021-09-28 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/history.c: Fixed a bug (non-translatable message);
+
+	* app/mixers/kbfloat.c: A local variable is renamed to avoid
+	collision with a global one;
+
+	* app/time-buffer.[ch]: Events insertion into the buffer is improved,
+	a kind of sorting is implemented.
+
+2021-09-16 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/menubar.c: The dialog for changing volume of all samples is
+	improved. Also a potential bug is fixed and the user will be warned
+	if overrange occurs;
+
+	* app/envelope-box.[ch], app/gui.[ch]: Envelopes scaling is
+	implemented.
+
+	* soundtracker.xml, app/track-editor.c: ST keybindings don't conflict
+	anymore with standard keybindings for text editing in entries.
+
+2021-09-10 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Effects' interpolation is improved: in the
+	matching mode notes with no explicitly set volume are affected if
+	the volume is interpolated; also KEYOFFs are skipped;
+
+	* app/gui-settings.[ch], app/instrument-editor.c,
+	app/sample-editor.c, app/st-subs.[ch]: Added options whether
+	sample / instrument names in the module should be overwritten on new
+	instrument / sample loading;
+
+	* app/audio.[ch], app/gui.c, app/instrument-editor.[ch],
+	app/xm-player.c: Playing keys are indicated on the clavier also in
+	the song / pattern playing modes;
+
+	* soundtracker.xml, app/gui-settings.[ch], app/gui.c,
+	app/st-subs.[ch], app/track-editor.[ch]: Masking and transparency
+	in the track / pattern / block cut / copy / paste operations are
+	implemented;
+
+	* app/clavier.c: Occasional clavier crash is fixed.
+
+2021-08-16 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.[ch], app/instrument-editor.c: Envelope cut /
+	copy / paste is implemented;
+
+	* soundtracker.xml, app/gui-settings.[ch], app/gui.[ch],
+	app/st-subs.[ch], app/track-editor.c: Pattern line insertion /
+	removal is implemented;
+
+	* app/mixers/integer32.c, app/mixers/kbfloat.c, app/audio-subs.c,
+	app/audio.[ch], app/gui-settings.[ch], app/gui.[ch], app/mixer.h,
+	app/module-info.c, app/sample-editor.c, app/scope-group.[ch],
+	app/time-buffer.[ch], app/tracer.c, app/xm-player.[ch], app/xm.h:
+	Optional instrument / sample indication in scopes is implemented.
+
+2021-06-16 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.2.1.
+
+2021-05-27 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio-subs.c, app/file-operations.c, app/gui.c,
+	app/track-editor.c: clang warnings fixed.
+
+2021-05-18 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio-subs.c: Fixed build on FreeBSD, provided by Yuri
+	Viktorovich;
+
+	* app/audio-keys.c: Fixed crash on FreeBSD, provided by Yuri
+	Viktorovich;
+
+	* app/gui-subs.h: Fixed wrong inline substitution reported by clang.
+
+2021-05-16 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.2.
+
+2021-04-16 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/menubar.c: When cleaning off unused instruments, only those are
+	affected, which have samples OR (instead of "and") having non-empty
+	name. The copyright notice is updated;
+
+	* app/instrument-editor.c: Fixed occasional crash on instrument
+	exchange;
+
+2021-03-20 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/instrument-editor.c: "Initialize" button caption is renamed to
+	"Init" with addng the tooltip to make GUI more compact. Sample map
+	initialization is now logged and can be undone / redone.
+
+2021-03-04 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/pulse-output.c, app/gui-settings.c: Program name
+	"SoundTracker" is now being taken from config.h rather than
+	hardcoded one;
+
+	* sample-editor.xml, soundtracker.xml, po/POTFILES.in,
+	app/drivers/alsa1x.c, app/drivers/oss.c, app/drivers/sun-output.c,
+	app/gui-settings.c, app/sample-editor.c, some translation- and
+	literal strings'-related fixes.
+
+2021-02-26 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c: The problem with unwanted files in the
+	recent list is solved. Now only modules get into the recent files
+	list;
+
+	* Released v1.0.2-pre2.
+
+2021-02-23 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/xm-player.c: EC0 effect now works as it must do;
+
+	* app/sample-editor.c, app/time-buffer.[ch], app/track-editor.c:
+	Time buffer API is optimized. Also some potential problems are fixed;
+
+	* app/track-editor.c: BackSpace undo fixed in the Track Editor;
+
+	* app/clavier.c: Clavier look is improved;
+
+	* app/audio-subs.c, app/history.c, app/sample-editor.c,
+	app/time-buffer.[ch]: Heading info of some sources is updated.
+
+2021-02-15 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/midi.c, app/track-editor.c, app/tracker.c: Fixed track editor
+	redrawing mainly in block selection mode plus some optimization.
+
+2021-02-13 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/main.c, app/drivers/pulse-output.c: PulseAudio driver is ready!
+	BTW it supports on the fly output discretization rate changing;
+
+	* app/menubar.c: A message is issued when nothing is to be optimized
+	in a module;
+
+	* soundtracker.xml, app/gui.c: Looking for an occurence of the current
+	instrument is implemented;
+
+	* app/gui-settings.c: GUI settings window is optimized (better fit on
+	small displays);
+
+	* cheat-sheet.*.txt, app/gui-settings.[ch], app/xm-player.c: Filter
+	effect can be switched off from GUI settings page.
+
+2021-02-06 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Ctrl + Space can be used to stop playing on the Track
+	Editor page without editing mode toggling;
+
+	* app/mixers/kbfloat.c, app/tracer.[ch]: Filter behaviour is fixed
+	(now filter does not depend on the playrate);
+
+	* app/audio.c: Fixed rendering fragments to sample (garbage at the
+	end of the sample);
+
+	* app/track-editor.c: Fixed "Delete" key action when used in the
+	block selection mode;
+
+	* app/extspinbutton.[ch]: Extspinbutton does not depend anymore on
+	gui.h (mainwindow);
+
+	* app/gui.[ch], app/menubar.c: Clearing module also resets file name;
+
+	* app/gui.c: Fixed undo / redo of playlist current pattern entry;
+
+	* soundtracker.xml, app/menubar.c, app/track-editor.c:
+	Shift + Ctrl + V (as well as a menu entry) can be used to paste block
+	wihout moving cursor to its end;
+
+	* app/history.h: A misleading comment is fixed;
+
+	* soundtracker.xml, app/menubar.c: Adjustment of all samples' volume
+	at once is implemented;
+
+	* app/module-info.c: Extended Editor collapsing stops any tuning
+	procedure and respective playback;
+
+	* app/gui.c: Highlighting of some measures is improved.
+
+2021-02-01 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch], app/track-editor.c: "Play current row" and "Play
+	block" keybindings can be activated only from track editor page;
+
+	* keys.[ch]: Code optimization;
+
+	* app/gui.[ch], keys.[ch], app/sample-editor.c: A configurable
+	keybinding can be used to start / stop sampling.
+
+2020-12-31 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Some bugfixes and optimization: sample editor
+	keybindings doesn't interfere anymore with global keybindings; crash
+	fixed on attempt to delete empty selection; sample pasting is
+	optimized, also loop settings are updated correctly on pasting and
+	silence insertion;
+
+	* app/drivers/sun-input.c, app/drivers/sun-output.c: Bugfix;
+
+	* app/xm.c: Sample length correction on loading procedure is fixed
+	(before the loop end couldn't be the last discrete of the sample).
+
+2020-11-27 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: On sample copy attempt in the Sample editor,
+	when no region is selected, the whole sample is being copied with all
+	its parameters (like volume, panning, loop points). Also sample
+	scrolling is improved: minimal unit is one screen point, not one
+	discrete;
+
+	* app/gui-subs.[ch], app/gui.c, app/instrument-editor.c, app/main.c,
+	app/module-info.c, app/sample-editor.c, app/xm.[ch]: Messages for out
+	of memory error and file errors are unified;
+
+	* app/xm.[ch]: Midi-related staff of instruments is kept as is,
+	although ST still doesn't use it;
+
+	* app/track-editor.c: Fixed a bug with volume / effect parameter
+	scrolling, introduced on 9.11.20. Another improvement: FX parameters
+	interpolation now takes care on number and size of parameters;
+
+	* soundtracker.xml, app/track-editor.c: Volume / FX interpolation
+	improvement: added an option to modify parameters of only matching
+	effects preserving empty fields;
+
+	* app/endian-conv.h, app/xm.c: An approach to recovery broken
+	modules with corrupted patterns. Also the correlation recovery
+	procedure is bugfixed;
+
+	* app/history.c: Bugfix (restoring the free size on history cleaning);
+
+	* app/audio.[ch], app/gui.c, app/sample-editor.[ch], soundtracker.xml:
+	Added facilities for rendering block / track / pattern / song to a
+	sample;
+
+	* app/st-subs.c: Loop correction procedure is fixed (it gave wrong
+	results, for example, on deleting data at the beginning of the
+	sample).
+
+2020-11-14 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.[ch], app/track-editor.c: Added an option, in try
+	mode whether to retrig the same note on different channels (which
+	makes a kind of hall effect) or not;
+
+	* app/envelope-box.[ch]: Pressing CTRL restricts point movement to
+	either horizontal or vertical direction.
+
+2020-11-09 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/sample-editor.c, sample-editor.xml: Some keybindings
+	are added for the Sample editor;
+
+	* app/module-info.c: Extended editor is made a little bit more
+	convenient;
+
+	* app/track-editor.c: When user starts scrolling the volume of the
+	note with no explicit volume value, the basic value from the
+	appropriate sample is taken. Also scrolling in the effect column is
+	disabled when no effect presents on the selected place.
+
+2020-11-08 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/tracker.[ch]: Optimization. Tracker doesn't depend on
+	gui.h any more;
+
+	* app/instrument-editor.c, app/module-info.c, app/tracker.[ch]:
+	Another optimization: less global variables, better incapsulation;
+
+	* app/audio.c, app/time-buffer.[ch]: Code cleanup, unused parameter is
+	removed;
+
+	* app/clavier.[ch], app/instrument-editor.c: Tons of unused code is
+	removed from the clavier;
+
+	* app/clavier.[ch], app/gui-settings.[ch], app/instrument-editor.[ch]:
+	Clavier font is made selectable.
+
+2020-10-19 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c: Fixed build without canvas.
+
+2020-10-12 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.2-pre1.
+
+	* app/track-editor.c: Fixed wrong behaviour of the volume / FX
+	parameter autoincreasing / decreasing when the reference line contains
+	no volume / FX. Some key combinations (like Shift + F4) didn't work
+	when the cursor was in the instrument / volume / FX column. Now fixed;
+
+	* app/module-info.c: Fixed missing update of the second list of
+	samples when a sample name is changed.
+
+2020-10-11 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch]: Logging improvements and fixes;
+
+	* app/history.[ch], app/midi.c, app/track-editor.[ch]: Logging-
+	related code rearrangement;
+
+	* app/track-editor.c: Logging is added to all Track Editor
+	operations;
+
+	* app/envelope-box.c, app/gui.[ch], app/history.[ch],
+	app/instrument-editor.c, app/menubar.c, app/midi.c, app/module-info.c,
+	app/sample-editor.c, app/track-editor.c, app/transposition.c,
+	app/xm.h: The implementation of history of operations is completed.
+	All user actions are logged with possibility to undo/redo most of
+	them.
+
+2020-10-09 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c: Message typo fixed;
+
+	* app/history.[ch], app/instrument-editor.[ch], app/module-info.c,
+	app/st-subs.[ch]: Code rearrangement (mainly related to logging) with
+	some bugfixes;
+
+	* app/gui-subs.h, app/sample-display.c, app/sample-editor.c: Logging
+	is added to all Sample Editor operations.
+
+2020-10-04 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch], app/track-editor.[ch]: Some logging functions are
+	made global + some code optimization;
+
+	* app/transposition.c: Logging is implemented from all transposing /
+	instrument reassigning operations.
+
+2020-10-02 Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Logging of the "Add free pattern + copy" operation is
+	improved. Undo returns ST exactly the same state as it was before the
+	operation;
+
+	* app/gui.c, app/soundtracker.xml: An icon is added for Undo History
+	menu entry.
+
+2020-10-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/st-subs.c: Fixed a buggy loading samples with too long names
+	(the module info list lines were not tuncated to 22 charachters).
+
+2020-09-27  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c, app/st-subs.[ch]: Sample name (often used as
+	a comment) is not cleaned when a sample is cleaned from the sample
+	editor;
+
+	* app/envelope-box.c, app/gui.c, app/history.[ch],
+	app/instrument-editor.c, app/sample-editor.c, app/track-editor.c:
+	Some improvements of user actions logging (redo and undo can be
+	distinguished in the backend function);
+
+	* app/gui-subs.[ch], app/module-info.c, app/instrument-editor.[ch],
+	app/sample-editor.[ch]: All operations from the module info page are
+	logged;
+
+	* app/gui.c, app/menubar.c, app/module-info.[ch], soundtracker.xml:
+	Some code is moved from the app/module-info.c to more appropriate
+	places. The module info header is cleaned up from some global
+	declarations which are actually not used from any C module (only by
+	UI builder).
+
+2020-09-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c, app/tracker.[ch]: Tracker redrawing is
+	optimized;
+
+	* app/history.[ch], app/menubar.c, app/module-info.c: More user
+	actions are logged (undo/redo support for module-info.c is still
+	incomplete).
+
+2020-09-17  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/history.[ch]: All operations from gui.c are now
+	logged;
+
+	* app/midi.c, app/history.[ch]: Notes recording from MIDI is logged.
+
+2020-09-15  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch], app/sample-editor.[ch], app/app/track-editor.c:
+	Code reorganization and optimization: clipping indicator update
+	routine is now called from tracker updating function;
+
+	* app/colors.c, app/sample-editor.c, app/time-buffer.c,
+	app/tracker-settings.c: Performance aspects related to GList/GSList
+	data types are improved. Time buffer now uses queries instead of
+	lists;
+
+	* app/audioconfig.c app/gui-subs.[ch], app/keys.c, app/module-info.c,
+	app/tracker-settings.c, app/drivers/alsa1x.c: List view-related code
+	is optimized;
+
+	* soundtracker.xml, app/envelope-box.[ch], app/gui-settings.[ch],
+	app/gui-subs.[ch], app/gui.[ch], app/history.[ch],
+	app/instrument-editor.c, app/main.c, app/module-info.[ch],
+	app/playlist.[ch], app/sample-editor.c, app/st-subs.[ch],
+	app/track-editor.c, app/xm.c: First approach to support the history
+	of user activity with Undo and Redo facilities.
+
+2020-09-14  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/dummy-drivers.c: With dummy output one can "play"
+	modules with patterns scrolling, working scopes... unfortunately
+	without any sound ;-)
+
+	* app/xm-player.c: Fixed stopping on forward jumps in non-loop
+	playback mode;
+
+	* app/drivers/alsa1x.c: Fixed buffer size disappearing when it is
+	equal to 256 bytes;
+
+	* app/driver.h, app/file-operations.c, app/main.c, app/xm.c:
+	Dependencies between source modules and headers are corrected;
+
+	* app/audio-subs.[ch], app/audio.c, app/gui.[ch], app/module-info.c,
+	app/sample-editor.c, app/xm-player.[ch]: Fixed occasional sound
+	disappearing when using the keyboard mode of the tuning facility;
+
+	* app/envelope-box.[ch], app/gui-subs.h: Code optimization.
+
+2020-09-06  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio-subs.[ch], app/audio.[ch], app/audioconfig.c, 
+	app/driver-inout.h (removed), app/driver.h, app/errors.c, app/gui.ch,
+	app/main.c, app/sample-editor.[ch], app/drivers/alsa1x.c,
+	app/drivers/driver-thread.h, app/drivers/dsound-output.c,
+	app/drivers/dummy-drivers.c, app/drivers/irix-output.c,
+	app/drivers/jack.c, app/drivers/oss.c, app/drivers/sdl-output.c,
+	app/drivers/sun-input.c, app/drivers/sun-output.c: Sound output (and a
+	little bit input) subsystem is redesigned to be more responsive and
+	integrate with more different audio subsystems and servers.
+
+2020-08-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.[ch], app/gui.[ch], app/instrument-editor.c,
+	app/track-editor.c: Statusbar related functions are improved. Sample
+	editor now can post its own status messages above earlier ones;
+
+	* app/gui-subs.[ch]: Added facility for creating toolbars;
+
+	* app/sample-display.[ch]: A helper function needed for new sample
+	editor is added;
+
+	* app/sample-editor.[ch], sample-editor.xml: Sample editor GUI is
+	redesigned. Now it uses menus and a toolbar instead of same-looking
+	boring buttons. Silence insertion is added to the sample editor;
+
+	* app/gui.c: Error reporting is improved (missed image for pixbuf).
+	Fancy clipping LED imaged based on work by Thomas U. Gruettmueller.
+
+2020-08-25  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/colors.c: Untranslated message is fixed.
+
+2020-07-29  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.1.
+
+2020-07-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/scope-group.c: Drawing channel numbers in a little bit
+	straightforward manner.
+
+2020-07-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Fixed flawy entries operation at file page;
+
+	* app/instrument-editor.c: Fixed a bug with waveform updating in the
+	sample editor after loading a new instrument;
+
+	* app/envelope-box.c: Fixed a bug with loop and sustain updating on
+	instrument change;
+
+	* app/scope-group.c: Channel numbers drawing is improved.
+
+2020-07-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio.[ch], app/gui.c, app/xm-player.[ch]: Warnings are fixed
+	which occured in the pattern playing mode when the long pattern is
+	manually changed to a shorter one and the current position is
+	greater than the new pattern length.
+
+2020-07-07  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.[ch]: Some clavier drawing issues are fixed;
+
+	* app/instrument-editor.c, app/track-editor.[ch]: Tiny performance
+	improvement;
+
+	* app/menubar.c: C code syntax error is fixed.
+
+2020-07-06  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/jack.c: Fixed compilation with old GCC.
+
+2020-06-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/xm.c: Recovery of corrupted modules is improved;
+
+	* app/gui.c: Fixed wrong behaviour of "Create Dir" button in file
+	choosers.
+
+2020-06-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.[ch]: A couple of small bugs related to the
+	waveforms drawing is fixed.
+
+2020-05-27  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/menubar.c: Some i10n issues are fixed;
+
+	* app/audio.[ch]: Compilation without audio files IO libraries is
+	fixed;
+
+	* app/gui-subs.h, app/gui.c: Code cleanup (st_clock is now local as
+	it must be).
+
+2020-03-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/keys.c, app/menubar.c, app/track-editor.c, app/xm.c: Some
+	message strings are fixed.
+
+2020-02-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/menubar.c: Making About window more informative;
+
+	* Released v1.0.1-pre1
+
+2020-02-17  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c: A memory leak and an incorrect recoding are
+	fixed, file overwriting check is made more convenient;
+
+	* app/gui-subs.c: Errno and query dialog now have correct titles;
+
+	* app/main.c: Code cleanup;
+
+	* configure.ac, app/Makefile.am: Passing path to the code is done
+	in a more straightforward way.
+
+2020-01-24  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.[ch], app/colors.c, app/customdrawing.[ch],
+	app/draw-interlayer.[ch], app/gui.c, app/sample-display.[ch],
+	app/scalablepic.[ch], app/scope-group.c, app/tracker.[ch]: Code
+	cleanup, the "Display" variable is hidden inside the drawing
+	interlayer and is being handled implicitly.
+
+2020-01-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/time-buffer.[ch]: Optimization and sudden bugfix;
+
+	* app/audio.[ch], app/track-editor.c: Non-loop mode
+	bugfix / improvement (playback is not stopped before the end).
+
+2020-01-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/tracker.[ch]: A Cairo related bug is fixed: with double
+	buffering switched off symbols in the tracker were often not being
+	displayed;
+
+	* app/customdrawing.[ch], app/scope-group.c, app/tracker.c: Some
+	speedup (X11-based drawing functions and double-buffering issues);
+
+	* configure.ac: When X11 drawing backend is selected, the presence of
+	the X11 headers is checked;
+
+	* app/tracker.c: A little inaccuracy in drawing the selection is
+	fixed;
+
+	* app/Makefile.am, app/colors.[ch], app/customdrawing.[ch],
+	app/draw.[ch] => app/draw_interlayer.[ch], app/gui.c,
+	app/sample-display.[ch], app/sample-editor.c, app/scalablepic.[ch],
+	app/scope-group.[ch], app/tracker.[ch]: Files with drawing interlayer
+	for backends are renamed from draw.[ch] to drawing-interlayer.[ch]
+	with consistent API change for clearer naming of functions;
+
+	* app/colors.[ch], app/gui-settings.[ch], app/gui.c: Color manager
+	API is changed to implement a new function (taking colors from GTK+
+	widget theme);
+	* app/clavier.[ch]: Clavier is now using drawing functions from the
+	backends' interlayer instead of deprecated Gdk calls;
+
+	* configure.ac, app/customdrawing.c, app/gui-settings.c, app/gui.c,
+	app/keys.c, app/midi.c, app/scalablepic.c, app/tracker.c: The code
+	is cleaned up from deprecated Gdk symbols (except for gdk drawing
+	backend).
+
+2020-01-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Live recording in the pattern playing mode is
+	fixed;
+
+	* app/colors.c: Color scheme tuning dialog is made more convenient;
+	also a small bug is fixed (on redrawing the color preview, a small
+	rectangle to the right from the radio button, the old color was being
+	displayed).
+
+2020-01-10  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio.c, app/xm-player.c: Fixed race condition in the sound
+	rendering code that led to accidental crashes when using Jack driver;
+
+	* app/drivers/jack.c: A stupid bug is fixed;
+
+	* app/audio.[ch], app/gui-settings.[ch], app/preferences.[ch],
+	app/track-editor.c, app/xm-player.c: Live recording is improved: now
+	the key press/release position is calculated more accurately with
+	optional compensation of the human-made delay. Also (optinal) the
+	exact key press/release position can be recorded using FXes;
+
+	* app/track-editor.c, app/tracker.c, app/transposition.c,
+	app/xm-player.[ch]: Some hardcoded numbers related to XM player are
+	replaced by symbolic constants;
+
+	* app/track-editor.c: Code of the function show_editmode_status() is
+	strongly optimized, cleaned up and bugfixed (there were some parts
+	of the status that was not being translated);
+
+	* Released v1.0.0.1 (in the parallel git branch)
+
+2020-01-02  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.c, app/colors.c, app/file-operations.c,
+	app/gui-subs.c, app/gui.c, app/sample-editor.c, app/transposition.c:
+	Fixed size cast issues that gave compiler warnings on some systems
+	and possibly could lead to ST crash;
+
+	* app/xm.c: A compiler warning is fixed (sizes' mismatch).
+
+2019-12-28  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml, app/gui-settings.[ch], app/menubar.c,
+	app/track-editor.[ch]: "Record keyreleases" setting is moved to the
+	settings page from menu and now is saved and restored like other
+	settings.
+
+2019-12-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.[ch], app/track-editor.c, app/tracker.c: Added
+	an option to display volume value as a decimal number instead of
+	hexadecimat (the representation of volume column effects is not
+	changed);
+
+	* app/file-operations.c, app/gui.c, app/instrument-editor.c,
+	app/keys.[ch], app/module-info.c, app/track-editor.c: The resistance
+	to X11 bug/feature is improved: ST now can distinguish between two
+	different keys producing the same X key symbol + a small localization
+	fix.
+
+2019-12-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.h, app/clock.h, app/customdrawing.h,
+	app/envelope-box.h, app/extspinbutton.h, app/playlist.h,
+	app/scalablepic.h, app/scope-group.h, app/tracker-settings.h,
+	app/tracker.h: GType issue is fixed.
+
+2019-12-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c, app/drivers/oss.c, app/drivers/sun-input.c,
+	app/drivers/sun-output.c, app/envelope-box.c, app/gui-settings.c,
+	app/gui-subs.[ch], app/gui.c, app/keys.c, app/module-info.c,
+	app/playlist.c, app/sample-editor.c, app/transposition.c: GUI is
+	optimized, mainly by getting rid of add_empty_[hv]box() and arranging
+	different forms of make_radio_group*() and
+	make_labelled_radio_group_box*() functions;
+
+	* app/clavier.c, app/clock.c, app/customdrawing.c,
+	app/extspinbutton.c, app/sample-display.c, app/scalablepic.c,
+	app/scope-group.c: GObject stuff is arranged;
+
+	* app/sample-editor.c: The multithreading stuff is fixed;
+
+	* app/gui.c, app/track-editor.c, app/tracker.c: Volume column input
+	and displaying in the FT2 mode is fixed.
+
+2019-12-17  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/module-info.c: Tooltips are added to some extended editor
+	buttons;
+
+	* app/audioconfig.c, app/colors.c, app/gui.c, app/module-info.c,
+	app/tips-dialog.c, app/track-editor.c, app/xm.c,
+	app/drivers/alsa1x.c, app/drivers/jack.c, app/drivers/oss.c,
+	app/drivers/sun-input.c, app/drivers/sun-output.c: Usage of strings
+	is sanitized to prevent possible buffer overflows and truncations.
+
+2019-12-16  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml: Ctrl + BackSpace is used for deleting a track;
+
+	* app/audio.c: Fixed a possible concurrence between tracer and audio
+	driver (which sometimes caused Jack driver to crash);
+
+	* app/audioconfig.c: The local variable "mixer" is renamed to
+	"_mixer" to avoid a possible confuse with the global variable having
+	the same name;
+
+	* app/audio.c, app/sample-editor.c: Fixed a crash after the sound
+	driver has failed;
+
+	* app/sample-display.c: Bigendian systems should now be supported
+	(no possibility to test, sorry);
+
+	* app/sample-editor.c: Sampling monitor code is simplified;
+
+	* app/audioconfig.c, app/driver.h, app/drivers/alsa1x.c,
+	app/drivers/oss.c, app/drivers/sun-input.c: Drivers' group
+	identification is added (used in Jack driver to share the same port
+	between several drivers);
+
+	* app/main.c, app/drivers/jack-output.c is renamed to
+	app/drivers/jack.c: Jack input driver is written.
+
+2019-12-15  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.[ch], app/track-editor.c, app/tracker.c: Added
+	an option to display volume column effects as symbols, either
+	letters or mnemonic signs as it is done in FastTracker 2;
+
+	* app/menubar.c, app/scope-group.[ch]: The scope group code is
+	simplified;
+
+	* app/gui.c, app/keys.[ch], app/track-editor.c: More keys are made
+	configurable (like Play Song, Play Pattern and so on);
+
+	* app/keys.[ch]: "Alt" modifier is not used for keybindings to avoid
+	interference with Gtk menu;
+
+	* soundtracker.xml, app/menubar.c: Some new keybindings and menu
+	entries are added;
+
+	* app/track-editor.c: The behaviour of the BackSpace key is fixed.
+
+2019-12-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Released v1.0.0
+
+2019-11-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/sample-editor.c: Mainly a cosmetic fix; the
+	"binary" flag is specified in the file opening mode;
+
+	* configure.ac, Makefile.am, app/Makefile.am: jack detection code
+	cleanup;
+
+	* Makefile.am, soundtracker.desktop, soundtracker.appdata.xml:
+	desktop stuff is reenabled.
+
+2019-10-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Loading of the stereo samples is fixed;
+
+	* app/gui-subs.c: Error dialog with error code handling (errno) is
+	fixed;
+
+	* app/gui.c: The wav rendering code is bugfixed (saving as 8-bit
+	audio using sndfile). Also the error reporting while file saving is
+	implemented;
+
+	* app/sample-display.c: The min/max mode of the sample displays is
+	fixed again;
+
+	* soundtracker.xml, app/audio.[ch], app/gui.c: A procedure of the
+	automatic amplification estimation is implemented;
+
+	* app/track-editor.c: The volume/fx parameter scrolling using mouse
+	wheel is fixed. The BackSpace usage is fixed again.
+
+2019-10-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.[ch]: A small GUI improvment; added an ability to
+	add radio buttons also to the end of a box;
+
+	* app/audio.[ch], app/audioconfig.c, app/gui-settings.[ch],
+	app/gui.c, app/main.c: The sound rendering code can now be called
+	directly from the main thread, not only from audio thread. Module
+	to wav rendering is rewritten using this ability and does not need
+	a pseudo file output driver anymore (app/drivers/file-output.c is
+	removed).
+
+2019-10-05  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.c: Fixed min/max mode waveform drawing bug;
+
+	* app/gui.c, app/tracker.[ch]: Left CTRL + mouse wheel now scroll
+	through pattern order table. Left ALT + mouse wheel is now used for
+	volume / FX parameter changing as described below;
+
+	* app/gui.c: Left SHIFT can be used to speed up the song position
+	scrolling with CTRL + PgUp/PgDown (+- 10 patterns instead of 1);
+
+	* app/tracker.c: Left SHIFT + left mouse button press at the tracker
+	area extends the existing selection to the current mouse pointer
+	location;
+
+	* app/module-info.c: The samples mixing facility is added to the
+	Extended Editor;
+
+	* app/xm-player.c: Fixed a bug with playing block extending to the
+	end of a pattern.
+
+2019-10-03  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Fixed a bug: Cursor Down key didn't work just
+	after pressing the BackSpace key.
+
+2019-09-27  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/xm.c: Added some code which tries to load XMs even when they
+	are partly broken (with corrupted instrument headers) with some
+	limited capability to repair them;
+
+	* app/marshal.list app/track-editor.c app/tracker.[ch]: Added a
+	function to increase/decrease volume or FX parameter using Ctrl +
+	mouse wheel when the mouse pointer is above either a volume or an
+	FX field.
+
+2019-09-24  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml, app/gui.c: Switching on/off playback looping is
+	now performed through a menu entry with associated keybinding rather
+	than direct keypress handling in gui.c.
+
+2019-09-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/instrument-editor.c: The Instrument Editor GUI is made more
+	comprehensive regarding to the fadeout / vibrato controls;
+
+	* app/gui.c, app/playlist.c: The playlist.c dependency on gui.h is
+	removed;
+
+	* soundtracker.xml, app/gui.c: The menu entries with keybindings are
+	added for free pattern appending, also with copying of the current
+	pattern;
+
+	* app/audio.c, app/gui-settings.[ch], app/gui.[ch],
+	app/xm-player.[ch]: "Play from cursor" and "Play block" actions are
+	added, as well as playback looping control (the later may work not as
+	expected, see FAQ);
+
+	* app/track-editor.c: Added warning issued on track insertion when a
+	non-empty track is pushed away the pattern scope.
+
+2019-09-09  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/track-editor.c: The keybindings are improved;
+
+	* app/instrument-editor.[ch]: An instrument can be cleaned only in
+	the editing mode and after the confirmation;
+
+	* app/module-info.c: "Delete" key can be used to clean an instrument
+	from the module info page. The forgotten debugging printf() is removed;
+
+	* app/envelope-box.c: Now the correct upper limit of some
+	spin-buttons is set at the envelope change (before there was a bug
+	that could lead to ST crash);
+
+	* app/gui.c: The pattern order table can now be modified only in the
+	editing mode;
+
+	* app/xm-player.c: The support of the E4x (vibrato control) and E7x
+	(tremolo control) FXes is added to support FT2 continious mode for
+	vibrato and tremolo.
+
+2019-09-05  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.[ch], app/track-editor.c: A setting is added,
+	whether to emulate or not the FastTracker II Rxx bug.
+
+2019-09-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: The bug is fixed which allowed one to make XMs
+	with instrument numbers > 128;
+
+	* soundtracker.xml, app/keys.c, app/menubar.c, app/scope-group.[ch],
+	app/track-editor.c: Muting / unmuting channels is now performed using
+	the regular menu item instead of some configurable keys (the
+	keybinding is unchanges, Ctrl + M).
+
+2019-08-29  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.c: The widget is now correctly being redrawn
+	(there was a bug here; for example the selection sometimes was not
+	properly displayed). The waveform gaps in the minmax mode are fixed,
+	the code is slightly optimized;
+
+	* app/xm-player.c: Some FX'es are fixed: E9x (retrig) and Rxy (multi
+	retrig) now work as they do in the FastTracker II: fully retrig the
+	note, not only setting the sample position to the beginning (The Rxy
+	FT2 bug is not emulated). Also the FXes' behaviour is correct (like
+	in FT2) when the FX is triggered without a note. EDx (note delay)
+	retrigs the last note when it's called without a note.
+
+2019-08-28  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/module-info.c: A localization issue related to the Extended
+	Editor is fixed;
+
+	* app/gui-settings.[ch], app/gui.c, app/menubar.[ch],
+	app/track-editor.[ch]: Two additional mark modes in the track editor
+	are added: FT2-like and mixed;
+
+	* app/customdrawing.[ch], app/draw.h, app/sample-display.c,
+	app/sample-editor.c app/scalablepic.c, app/scope-group.c: Removed
+	flicker when using the X11 graphics backend;
+
+	* app/file-operations.[ch], app/gui-settings.[ch], app/gui.c,
+	app/instrument-editor.c, app/sample-editor.c: The extension can be
+	added automatically to the file name (configurable);
+
+	* app/gui.c: Menu entries "Load pattern" and "Save pattern" that
+	that were muddled together are fixed. The proper sorting of the
+	"Recent" submenu is implemented.
+
+2019-08-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/playlist.c: The bug with the last pattern removing is fixed.
+
+2019-08-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio.[ch], app/gui.[ch], app/xm-player.[ch]: Added one more
+	API hook for a sound controlling function (stop note at the given
+	channel);
+
+	* app/gui.[ch]: Added API functions for accessing the standard images;
+
+	* app/instrument-editor.[ch], app/tracker.h: Number of notes is
+	defined as a symbolic constant instead of being a hardcoded number;
+
+	* app/instrument-editor.[ch]: Added API function for translating the
+	note number into the musical symbol;
+
+	* app/gui.[ch], app/module-info.[ch], app/sample-editor.[ch]: Added a
+	sample tuning facility to the Extended Editor area;
+
+	* app/drivers/alsa1x.c, app/drivers/file-output.c,
+	app/mixers/kbfloat.c, app/audioconfig.c, app/colors.c,
+	app/envelope-box.c, app/instrument-editor.c, app/keys.c,
+	app/module-info.c, app/recode.c, app/sample-editor.c,
+	app/st-subs.[ch], app/tips-dialog.c, app/track-editor.c,
+	app/tracker.c, app/transposition.c, app/xm.c: Macros added for
+	calculating the number of elements in arrays;
+
+	configure.ac, app/colors.c, app/gui.c, app/menubar.c, app/midi.c,
+	app/sample-editor.c, app/tips-dialog.c: The mixed-case program name
+	"SoundTracker" is now defined as a symbolic constant assigned while
+	package configuration.
+
+2019-08-19  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c, app/audioconfig.c, app/extspinbutton.c,
+	app/gui-subs.[ch], app/tracker-settings.c: Some GUI code rearrangement
+	and optimization for the upcoming development;
+
+	* app/module-info.c, app/st-subs.[ch]: The extended editing functions
+	are added: copying and exchanging instruments and samples (located at
+	the module-info page);
+
+	* app/gui.c, app/module-info.c, app/st-subs.[ch], app/transposition.c,
+	app/xm.c: Another code optimization, the numbers of samples and
+	instruments are calculated automatically instead of being hard-coded
+	constants.
+
+2019-08-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: The amplification slider has now a logarithmic scale.
+	Also a numeric entry is added acting together with the slider;
+
+	* app/gui-settings.[ch], app/sample-display.[ch],
+	app/sample-editor.[ch], app/scope-group.[ch]: A min/max mode for the
+	waveform displays is added (more accurate, but taking a bit more CPU
+	power);
+
+	* app/mixer.h, app/sample-editor.c: A bug related to the wrong
+	displaying of the stereo samples is fixed;
+
+	* app/colors.c: The colors configuration dialog is improved.
+
+2019-08-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.[ch], app/instrument-editor.c: The mouse support in
+	the instrument editor is improved: one can either play or map
+	samples using different mouse buttons (see README);
+
+	* app/instrument-editor.c: In the instrument editor the pressed keys
+	are being indicated when playing using the keyboard;
+
+	* app/customdrawing.[ch], app/gui.c, app/sample-display.[ch],
+	app/scalablepic.[ch], app/scope-group.[ch]: Channel numbers are
+	being drawn inside the sample displays (scopes) instead of taking
+	additional space;
+
+	* app/draw.[ch], app/sample-editor.c, app/scope-group.c: A red record
+	indicator is being drawn in the sampling monitor when the recording
+	is on;
+
+	* app/colors.[ch], app/gui-settings.c, app/gui.c,
+	app/sample-display.[ch], app/sample-editor.c, app/scope-group.c,
+	app/tracker.[ch]: According to the Single Responsibility Princinple
+	all colors' management functions are brought together in the
+	app/colors.[ch] files. Some more colors (like colors of the sample
+	displays) are made configurable;
+
+	configure.ac, app/colors.[ch], app/draw.[ch], app/gui.c,
+	app/sample-display.[ch], app/sample-editor.c, app/scalablepic.[ch],
+	app/scope-group.[ch], app/tracker.[ch]: Backends selection for the
+	low-level drawing functions is implemented. Some further optimization
+	of the waveform drawing in the sample displays is done. With the X11
+	backend the ST performance is greatly improved; the bug with the high
+	CPU usage is fixed.
+
+2019-07-23  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.c: An incorrect signal marshaller is fixed;
+
+	* app/file-operations.c: The single-click behavior is improved (a
+	file dragging coming up after the switching from the file to the
+	tracker page is got rid);
+
+	* configure.ac, app/gui.c, app/scope-group.[ch]: Check for
+	gdk-pixbuf is removed since this is the essential part of the Gtk
+	library.
+
+2019-07-23  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* configure.ac: A typo mistake is fixed, that preventing from
+	detecting the deprecated Gtk API calls;
+	* app/cheat-sheet.c, app/clavier.[ch], app/clock.c,
+	app/drivers/alsa1x.c, app/drivers/oss.c, app/drivers/sun-input.c,
+	app/drivers/sun-output.c, app/envelope-box.[ch],
+	app/extspinbutton.[ch], app/gui-settings.c, app/gui-subs.[ch],
+	app/gui.c, app/instrument-editor.c, app/keys.c, app/main.c,
+	app/midi-settings.c, app/module-info.c, app/playlist.[ch],
+	app/sample-display.[ch], app/sample-editor.c, app/scalablepic.[ch],
+	app/scope-group.[ch], app/tracker-settings.c, app/tracker.[ch],
+	app/marshal.list: The code is finally cleaned up from the residuals
+	of the deprecated Gtk API;
+
+	* configure.ac, app/cheat-sheet.c, app/menubar.c: Dropped
+	dependency on GtkHTML, which really depends on the deprecated
+	Gnome UI. Instead, the text-based cheat sheet is implemented, but
+	with the localization support;
+
+	* app/gui.c: An internationalization issue with the Recent menu is
+	fixed.
+
+2019-07-12  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/menubar.c: Superfluous includes are removed;
+
+	* app/tracker-settings.c: A memory leak is fixed.
+
+2019-07-06  Michael Krause  <mk@soundtracker.org>
+
+	* Released v1.0.0-pre1
+
+2019-07-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Some sampling window related bugixes
+	(occasonal crashes, wrong buttons' behavior).
+
+2019-05-06  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/main.c: The code is cleaned from ESD driver remainders;
+
+	* app/clavier.c: Color selection for drawing the clavier is improved.
+	Now it looks fine with both light and dark Gtk themes. Also the
+	sample numbers' placement is improved to adopt better every main
+	window size.
+
+2019-04-26  Michael Krause  <mk@soundtracker.org>
+
+	* app/clavier.c, app/clock.[ch], app/envelope-box.[ch],
+	app/extspinbutton.[ch], app/gui.c, app/playlist.[ch],
+	app/scalablepic.[ch], app/scope-group.[ch],
+	app/tracker-settings.[ch], app/tracker.[ch]: Some deprecated code is
+	modernized (GObject/GPOINTER stuff).
+
+2019-04-15  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* soundtracker.xml, app/gui.c: Recent edited files submenu of the
+	File menu is implemented;
+	* app/gui.c: Bugs related to the wrong file request from the command
+	line are fixed.
+
+2019-03-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* configure.ac: Cleanups ispired by work performed by Michael Krause
+	in Gtk+-3 branch;
+
+	* configure.ac, app/main.c, app/menubar.c: Re-enabling MIDI code
+	since it's found out to be ALSA 1.x compatible. app/midi-*09x.c files
+	are remaned to app/midi-settings.c, app/midi-utils.c, app/midi.c to
+	avoid confusing.
+
+2019-03-15  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* configure.ac: A bug with --enable-hacks is fixed;
+
+	* app/gui-settings.c, app/gui-subs.[ch]: Making callback ID available
+	from gui_labelled_spin_button_new();
+
+	* app/gui.c: The bug (recently introduced) with tempo/BPM indicators'
+	updating and setting in the playing mode is fixed. Plus the code is
+	a little bit optimized in terms of performance;
+
+	* app/gui-settings.c, app/tracker.[ch]: Adding a new configurable
+	color in the tracker for the cursor line background when it overlaps
+	the selection;
+
+	* app/gui-settings.c: Wrong tracker line settings' displaying is
+	fixed.
+
+2019-03-11  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c: Code cleanup/probably some bugfix;
+
+	* app/gui.c, app/main.c, app/sample-editor.c: Fixed some issues
+	reported by gcc-6.
+
+2019-03-11  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c, app/drivers/oss.c, app/drivers/sun-input.c,
+	app/gui.c, app/instrument-editor.c, app/keys.c, app/preferences.c,
+	app/sample-editor.c, app/track-editor.c, app/xm.c, soundtracker.xml:
+	Some messages' output and localization issues are fixed.
+
+2018-12-09  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/sun-input.c: Ported to the multithreaded interface;
+
+	* app/audio.h, app/errors.[ch], app/gui-subs.[ch], app/gui.c,
+	app/drivers/esd-output.c, app/drivers/oss.c,
+	app/drivers/sun-input.c, app/drivers/sun-output.c: New message
+	functions to improve diagnostics: gui_errno_dialog() (for GUI
+	thread) and error_errno() (for other threads, working through
+	the mixer backpipe);
+
+	* app/gui-subs.c, app/gui.c: In two critical (really) cases
+	g_critical() is called instead of just warning;
+
+	* app/sample-editor.c, app/transposition.c: Gettext usage is
+	fixed.
+
+2018-12-08  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/sun-input.c: Bugfix (wrong string manipulation).
+
+2018-12-02  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c, app/drivers/driver-thread.h: Bugfix;
+
+	* app/drivers/oss.c: OSS sampling driver was ported to the new
+	multithreaded interface.
+
+2018-12-02  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c, app/drivers/driver-thread.h,
+	app/sample-editor.c: New semi-realtime multithreaded sampling
+	code is written, which is more stable and high load proof.
+
+2018-12-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c, sample_editor_scroll(): A small bugfix;
+
+	* app/gui.c, app/gui-subs.[ch], app/gui-settings.c: Some fake
+	"sliders" (really not) are converted to more appropriate labelled
+	spin buttons. The code of the labelled spin button itself is a
+	little bit optimized;
+
+	* app/gui-subs.[ch], app/instrument-editor.c: The code of
+	gui_subs_create_slider() is optimized;
+
+	* app/gui.c: The overhead due to unneeded calls of
+	gui_xm_set_modified() is removed. Pressing "ESC" on the file page
+	switches to the previous page;
+
+	* app/drivers/alsa1x.c, app/clock.c, app/gui-subs.c, gui.[ch],
+	app/sample-editor.c: Sources were cleaned from old dead code
+	commented out and some superfluous includes.
+
+2018-11-29  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.[ch], app/sample-editor.c: Mouse wheel(s)
+	support for scrolling/zooming is added.
+
+2018-11-25  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Sample redrawing frequency is no
+	more hadrcoded but equal to scopes' updaing frequency;
+	* app/gui-settings.[ch], app/gui-subs.[ch], app/gui.c,
+	app/instrument-editor.c, app/sample-editor.c:
+	file_selection_save_path() is renamed to
+	gui_settings_make_path() and moved from app/gui-subs.c to
+	app/gui-settings.c for better matching the structure of
+	sources;
+	app/instrument-editor.c: The most job of the
+	instrument_editor_update() is moved to the idle function
+	to improve interactivity;
+	* app/gui.c, app/track-editor.[ch], app/tracker.[ch]:
+	The cursor positioning code is optimized and fixed; both
+	h and v scrollers now work correctly;
+	* app/gui-subs.[ch]: gui_update_range_adjustment() is removed
+	since it's not longer in use;
+	* app/sample-editor.c, hscrollbar_changed(): It's better to round
+	value when dealing with GtkAdjustment;
+	* app/playlist.[ch]: GtkAdjustment-related aspects are cleaned
+	up; also unneeded gtkinvisible.h include is removed.
+
+2018-11-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.[ch], app/gui.c: Ah, ah, I (yaliaev)
+	have made the last fixes in a stupid way! Now the code is
+	cleaned up;
+	* app/envelope-box.c, app/gui-subs.[ch], app/gui.[ch],
+	app/menubar.c, app/track-editor.c: gui_get_widget() is moved
+	from gui.c to gui-subs.c + related changes;
+	* app/gui-subs.[ch], app/gui.[ch]: Another portion of
+	cleanups, including removal residuals from old times;
+	* configure.ac: Check for dlfcn.h is removed since it's not
+	used, some versions of libs and utilities are corrected;
+	* app/driver-inout.h: Dead souls (declarations of
+	non-existing functions) are removed.
+
+2018-11-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.[ch], app/gui-subs.h, app/gui.c,
+	app/instrument-editor.c, app/sample-editor.c: File selection
+	interface was rewritten in more object-oriented way to
+	facilitate quest for bugs;
+	* app/instrument-editor.c: In
+	instrument_editor_save_instrument() a bug is fixed caused ST
+	crash at instrument saving;
+	* app/file-operations.c: In save_clicked() the wrong reporting
+	of the name of the file being rewritten is fixed.
+
+2018-11-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/instrument-editor.c, app/xm.c: Ask user if the version
+	of XI or XM being loaded is incorrect.
+
+2018-11-15  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/main.c: The #ifndef condition is added such as SIGSEGV is
+	not caught with -DDEBUG compiling option. This allows one to get
+	core file from the crashed ST and explore it with gdb;
+	* app/sample-editor.c, app/st-subs.[ch]: Code optimization;
+	* app/menubar.c: Samles and instruments can again be cut and
+	pasted in non-editing mode.
+
+2018-11-12  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/instrument-editor.c, app/xm.c: Preserve the current
+	instrument if the new one being loaded is corrupted;
+	* app/xm.c: Fixed possible crash on the uninitialized muteces'
+	cleaning up;
+	* app/st-subs.c: Fixed the bug introduced when moving to the
+	new GMutex interface.
+
+2018-11-11  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: gui_load_xm() is modifies such as the current module is
+	preserved if that being loaded is broken.
+
+2018-11-08  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.[ch], app/sample-editor.c: Code optimization,
+	a callbacks' loop is removed;
+	* app/sample-editor.c: Some GUI updating functions on sample change
+	are put into the idle loop to improve the responsibility;
+	* app/sample-editor.c, app/scope-group.c, app/track-editor.c: Deprecated
+	gtk_timeout_add/remove() functions are replaced by the modern ones;
+	* app/xm.c: Some forgotten messages were gettextized.
+
+2018-09-25  Michael Krause  <mk@soundtracker.org>
+
+	* updated build scripts to more recent autotools and gettext;
+	added ALSA 1.0 check (MIDI code is still at 0.9 and thus not
+	compilable at the moment).
+
+2018-09-24  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.c: Bugfix;
+	* app/drivers/oss.c: Code cleanup;
+	* app/envelope-box.c, app/gui.[ch], app/instrument-editor.c,
+	app/menubar.c, app/midi-09x.c, app/module-info.c,
+	app/sample-editor.c, app/track-editor.c, app/transposition.c,
+	app/xm-player.c, app/xm.h: The usage of xm_set_modified() function
+	is optimized;
+	* app/gui.c: In gui_update_title() title is now updated in idle mode
+	to reduce CPU overhead;
+	* app/xm.c, app/main.h: Some unused headers are removed;
+	* app/sample-display.c, app/sample-editor.c, app/track-editor.c,
+	app/tracker.c: Seprecated gtk_idle_add() function is replaced by
+	g_idle_add();
+	* soundtracker.xml: Cleanup, keybindings are adjusted.
+
+2018-09-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.c, app/gui-settings.c, app/gui-subs.h,
+	app/gui.c, app/keys.c, app/midi-settings-09x.c,
+	app/sample-editor.c, app/tips-dialog.c, app/transposition.c,
+	app/drivers/alsa1x.c: Dialogs are revised, optimized and made
+	nicer;
+	* app/preferences.c: In prefs_check_prefs_dir() message is
+	changed from warning to info;
+	* app/audio.c, app/cheat-sheet.c, app/gui-subs.c, app/gui.c,
+	app/instrument-editor.c, app/keys.c, app/xm.c,
+	app/drivers/alsa1x.c, app/drivers/file-output.c,
+	app/drivers/irix-output.c, app/drivers/jack-output.c: Many
+	gettext invocations are checked, added missing and removed
+	duplicated;
+	* app/sample-display.c: Code optimization and cleanup;
+	* app/extspinbutton.c, app/gui.[ch]: Code optimization, made
+	a uniform method to remove focus from a widget.
+
+2018-09-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.h: gui_info_dialog() Is defined;
+	* app/menubar.c, app/track-editor.c, app/transposition.c: The
+	check for editmode is added for some module modifing actions
+	like track/patter pasting, killing notes, transposition etc.
+
+2018-09-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/oss.c: Some optimization;
+	* app/sample-editor.c: Code cleanup; fixed the bug with zooming
+	to 1 sample.
+
+2018-09-10  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Loading files with non-ASCII names from the command
+	line is fixed;
+	* app/sample-editor.c, app/sample-dialog.c: Deprecated
+	gtk_label_st is replaced by gtk_label_set_text;
+	* app/extspinbutton.[ch]: Deprecated Gdk function is replaced by
+	that from Pango, plus some code optimization.
+
+2018-09-06  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.[ch]: File interface was rewritten almost
+	from scratch because the previous one was too buggy. Now single
+	click navigation works correctly, also keyboard usage is improved
+	a little bit;
+	* app/envelope-box.c, app/gui.[ch], app/instrument-editor.c,
+	app/menubar.[ch], app/sample-editor.c: Files were modified mainly
+	to be consistend with the above changes;
+	* app/gui-subs.[ch]: One function is moved here from gui.[ch];
+	also some functions incorrectly marked as inline are fixed;
+	* app/tracer.c: Possible memory violation is fixed;
+	* app/track-editor.c: Possible buffer overflow is fixed;
+	* app/drivers/sun-input.c, app/drivers/sun-output.c: Sources are
+	now consistent with the new drivers' interface (not testes though).
+
+2018-07-19  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch], app/instrument-editor.c, app/sample-editor.c,
+	app/drivers/file-output.c, app/st-subs.c, app/xm.[ch]: Fixed double
+	sample name setting + code optimization.
+
+2018-07-16  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio.c, app/audioconfig.c, app/gui.c, app/main.c,
+	app/menubar.c, app/sample-editor.c, app/drivers/file-output.c,
+	configure.in: The version of the audiofile library is now being
+	determined in the compilation time without runtime hacks;
+	* app/sample-editor.c: Bugfix (double file closing).
+
+2018-06-29  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Better fiddling with sounds in sample editor.
+	* app/keys.c, app/track-editor.c: The keyboard control for channels'
+	muting/unmuting is made simplier, some more default keybindings are
+	added.
+
+2018-06-28  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c, app/instrument-editor.c, app/module-info.c,
+	app/track-editor.[ch]: Polyphonic try mode is now also available at
+	the file, instrument editor and module info pages.
+
+2018-06-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio.c, app/gui-settings.[ch], app/gui.[ch], app/midi-09x.c,
+	app/track-editor.c, app/xm-player.[ch]: Polyphonic playing in try
+	(out of editing) mode (optional).
+
+2018-06-25  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c, app/xm-player.c: When out of editing mode,
+	note keys' pressing produces sounds independent on the cursor
+	position (note/instr/eff column, muted channel).
+
+2018-06-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c, app/extspinbutton.[ch], app/gui-settings.c,
+	app/gui-subs.[ch], app/gui.c, app/instrument-editor.c,
+	app/midi-settings-09x.c, app/playlist.c, app/sample-editor.c,
+	app/transposition.c: Extended spin button code is optimized (an
+	attempt to improve the interactivity). But this seems not to be the
+	cause...
+
+2018-06-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/cheat-sheet.c, app/clavier.c, app/gui-settings.c, app/gui-subs.c,
+	app/gui.c, app/playlist.c, app/sample-display.c, app/sample-editor.c,
+	app/scope-group.c, app/track-editor.c, app/tracker.c: Many 
+	deprecated symbols are removed (I hope, most of them);
+	* app/st-subs.c, app/drivers/jack-output.c: Code cleanup (unneeded 
+	headers);
+	* app/clock.c, app/scalablepic.c: Memory leaks are fixed;
+	* app/tracer.c: Tracer interface is now consistent with the 
+	previous fix;
+	* app/cheat-sheet.c, app/envelope-box.c, app/gui.c, GBS files: The 
+	uniform data dir entry is implemented.
+
+2018-06-08  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/mixer.h, app/mixers/integer32.c, app/mixers/kb-x86.c: The bug 
+	with high discretization frequences is fixed (now even 96 ksamples/s is 
+	ok).
+
+2018-06-07  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Sampling dialog is rewritten to be more 
+	convenient.
+
+2018-06-02  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Code optimization and cleanup.
+
+2018-05-31  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Stereo conversion dialogs are made more 
+	compact; file opening/closing issues are cleaned up and fixed.
+
+2016-07-12  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.c: Bugfix (wrong pointer usage).
+
+2014-12-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/jack-output.c: Jack output driver now works.
+
+2014-12-06  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audio.c, app/cheat-sheet.c, app/drivers/jack-output.c,
+	app/file-operations.c, app/gui-subs.[ch], app/gui.c,
+	app/instrument-editor.c, app/keys.c, app/preferences.c,
+	app/sample-editor.c, app/xm.c: A small bug with error/warning dialogs is
+	fixed.
+
+2014-11-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/oss.c: Fixed a crash because of incorrect buffer size.
+
+2014-11-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c: Bugfix (loop and sustain points are preserved
+	when changing current instrument).
+
+2014-06-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Fixed switching to tracker after current module saving
+	from a page other than tracker.
+
+2014-04-12  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.[ch], app/gui.c, app/instrument-editor.c,
+	app/sample-editor.c: Switching back from file operations page
+	is improved;
+	* app/instrument-editor.c: Module is marked as modified when a new
+	instrument has been loaded.
+
+2014-02-25  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Small GUI fixes.
+
+2013-11-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.c: Postponed bugfix and code cleanup.
+
+2013-10-27  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/mixers/kbfloat-mix.c: Removed unused NO_GASP conditional;
+	* app/audio.[ch], app/audioconfig.c, app/driver-inout.h, app/driver.h,
+	app/sample-editor.[ch], app/drivers/alsa1x.c, app/drivers/dsound-output.c,
+	app/drivers/dummy-drivers.c, app/drivers/esd-output.c,
+	app/drivers/file-output.c, app/drivers/irix-output.c, app/drivers/oss.c,
+	app/drivers/sdl-output.c: Drivers API is cleaned up and extended for
+	the upcoming JACK driver ("activate" and "deactivate" methods are added).
+
+2013-10-16  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* configure.in: Fixed compilation with --no-asm option.
+
+2013-10-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* po/*: Upgrade to gettext-0.18.2, clean-ups;
+	* app/audio.c, app/audioconfig.c, app/gui.c, app/sample-editor.c,
+	configure.in: Clean-ups regarding to compilation with audiofile library
+	and without sample output libraries at all.
+
+2013-10-12  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-display.h: Compilation at some systems is fixed.
+
+2013-09-27  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/esd-output.c: Error reporting is now displayed in correct
+	encoding. Seems there is no notable delay when working thru Pulseaudio
+	server.
+
+2013-09-23  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/instrument-editor.[ch], app/instrument-editor.h,
+	app/menubar.c, app/module-info.c, app/sample-editor.c: Some bugs related
+	to instruments' and samples' lists updating are fixed.
+
+2013-09-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Compilation with audiofile is fixed;
+	* app/audio.c, app/audio.h, app/audioconfig.c, app/drivers/file-output.c:
+	File output driver is now configurable (samplerate and number of channels),
+	sndfile and audiofile variants share a lot of code;
+	* app/gui.c: The buggy displaying of .wav files is fixed;
+	* app/file-operations.[ch], app/file-operations.h, app/gui.c,
+	app/instrument-editor.c, app/sample-editor.c: Tooltips are added to file
+	selection page toggles.
+
+2013-09-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/track-editor.c: Buffer overflow is fixed (utf-8 strings require
+	more place);
+	* app/gui.[ch], app/modue-info.c: Navigation with TAB and Up/Down arrows
+	is implemented at Module info page;
+	* app/sample-editor.c, app/st-subs.[ch]: The internal truncating of samples
+	treated as 8 bit is removed, because it causes the significant precision
+	loss. The samples are now actually rounded only at module/instrument
+	saving.
+
+2013-09-17  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: The right behavior of Ctrl + A shortcut in entries is
+	restored;
+	* app/gui.c, app/instrument-editor.c, app/module-info.c, app/recode.[ch],
+	app/sample-editor.c, app/st-subs.[ch], app/xm-player.c, app/xm.[ch]:
+	Correct charachter set conversion between FT2 codeset and utf-8 is
+	implemented as well as correct module/instruments'/samples' name padding.
+
+2013-09-16  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/menubar.c: The right behavior of Ctrl + C/V/X shortcuts in entries
+	is restored.
+
+2013-04-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c, app/preferences.c: Code cleanups.
+
+2013-04-02  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/main.c, app/midi-09x.c, app/midi.h, app/sample-display.c,
+	app/sample-editor.c: Fixed wrong memory access and leaks detected 
+	by Valgrind.
+
+2013-03-30  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x.c: Error recovery is implemented (inspired by aplay.c).
+
+2013-03-26  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/oss.c: Combined OSS driver for both input and output is done,
+	some bugs are fixed. OSS sampling now supports 8/16 bit, mono/stereo;
+	* app/drivers/alsa1x.c, app/sample-editor.c: Bugs introduced by new code are
+	fixed.
+
+2013-03-23  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/driver-inout.h, app/mixer.h, app/module-info.[ch],
+	app/sample-display.[ch], app/sample-editor.[ch], app/drivers/oss-import.c:
+	Sampling at arbitrary resolution and mono/stereo mode is implemented.
+	Sampling functions now work a bit faster because of less memory copying.
+	Both recording and sample loading allow stereo samples to be stored at two
+	subsequent samples;
+	* app/drivers/alsa1x.c: (renamed from alsa1x-output.c) Recording from ALSA
+	is implemented as well as endianess handling. Automatic detection of
+	available hardware devices is added;
+	* app/main.c, app/menubar.c, app/midi.h, app/midi-settings-09x.c,
+	app/midi-settings.h, app/midi-utils.h, configure.in, Makefile.am,
+	app/Makefile.am: Old ALSA support is dropped.
+
+2013-03-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.[ch], app/gui-subs.[ch], app/keys.c, app/module-info.c,
+	app/tracker-settings.c: Improved look, cleanups and improvments.
+
+2013-03-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.[ch]: Improved sample map look when using > 16 samples.
+
+2013-03-14  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.[ch], app/drivers/alsa1x-output.c: GUI helpers are moved to
+	gui-subs;
+	* app/track-editor.c: Increase/Decrease command value functions now work
+	better.
+
+2013-03-13  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* configure.in, app/Makefile.am: Installing ST suid root is made
+	conditional and disabled by default;
+	* app/drivers/alsa1x-output.c: Warnings at device test are removed;
+	* app/gui.c, app/gui-subs.[ch], app/track-editor.c: Label is used as tracker
+	status bar (this slightly improves look).
+
+2013-03-11  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.c, app/driver.h, app/gui.[ch], app/gui-settings.[ch],
+	app/gui-subs.c, app/instrument-editor.c, app/keys.[ch], app/main.c,
+	app/menubar.c, app/midi-settings-09x.c, app/preferences.[ch],
+	app/sample-editor.c, app/tips-dialog.c, app/tracker.[ch],
+	app/track-editor.c app/tracker-settings.c, app/drivers/alsa1x-output.c,
+	app/drivers/dsound-output.c, app/drivers/esd-output.c,
+	app/drivers/file-output.c, app/drivers/jack-output.c,
+	app/drivers/oss-input.c, app/drivers/oss-output.c, app/drivers/sdl-output.c,
+	app/drivers/sun-input.c, app/drivers/sun-output.c: Preferences are ported to
+	Glib stuff; now a single ~/.soundtracker/config file is used instead of
+	bunch of small files. Automatic conversion from ST-gtk1 configuration is
+	provided using soundtracker_convert_config script. Fixed longh paths storing.
+
+2013-02-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clavier.[ch]: Labels drawing is ported to Pango functions,
+	labels placement is fixed;
+	* app/gui.c, app/module-info.c: Fixed small bug with double calling
+	songname_changed() function.
+
+2013-02-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/cheat-sheet.c, app/sample-editor.[ch], app/gui-subs.[ch]: Escape
+	closes cheat-sheet and sampling windows + related code cleanups;
+	* app/gui.c, app/menubar.c, app/track-editor.[ch], soundtracker.xml:
+	Right-click menu of track editor becomes working properly;
+	* app/audioconfig.c, app/gui.c, app/gui-settings.c, app/gui-subs.[ch],
+	app/keys.c, app/main.c, app/midi-settings-09x.c, app/sample-editor.c,
+	app/tips-dialog.[ch], app/tracker-settings.c, app/transposition.c:
+	Massive dialogs cleanup and optimization;
+	* app/tracker.c: Fixed slightly corrupted XM displaying (with FX
+	type > 35), emulating FT2 behavoiur.
+
+2013-02-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c: Bugfix (crashes, leaks and GTK warnings).
+
+2013-02-01  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Bugfix (Instrument and Sample name entries' size).
+
+2013-01-28  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/gui-settings.c, app/gui-subs.[ch], app/playlist.c:
+	Tooltips are hung using proper Gtk+ interface;
+	* app/drivers/alsa1x-output.c: Audio delay estimation is reverted back
+	with appropriate tooltip. The configuting warning about ALSA 0.9 is
+	removed since the playback driver is working.
+
+2013-01-27  Yury Aliaev  <mutab0r@rambler.ru>
+
+	Manual page is added (taken probably from Debian project).
+
+2013-01-24  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch], app/xm-player.c, app/track-editor.c, app/menubar.c,
+	app/xm.h: Asterisk before file name is drawn when the module has unsaved
+	changes;
+	* app/gui.c, app/cheat-sheet.c, app/sample-editor.c: Application icon
+	support is added;
+	* app/scope-group.c: Clicking at scopes is fixed (now is working properly).
+
+2013-01-24  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.[ch]: Zooming (Ctrl) and horizontal scrolling (Shift) by
+	mouse wheel; sustain and loop lines are now dislayed.
+
+2013-01-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.c, app/gui.c, app/gui-subs.[ch] envelope-box.xml:
+	right-click on the envelope point makes it current. Right click on the
+	envelope editor canvas (outside points) pops up the menu (currently with
+	zoom functions only).
+
+2013-01-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/instrument-editor.c, app/main.c, app/xm.[ch]: The return
+	value of fwrite() is handled, file errors while saving are now reported.
+
+2013-01-18  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/envelope-box.[ch]: Goo canvas are used instead of Gnome canvas. The
+	last dependency on Gnome is dropped! Current point is highlit. Code is
+	cleaned up and bugfixed;
+	* app/instrument-editor.c: The bug with sliders displaying is fixed;
+	* app/gui-subs.[ch], app/playlist.c, app/sample-editor.c: Gtk+-2 native
+	function is used instead of self-made workaround.
+
+2012-12-19  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c: Gtk hacks now performed at run time, no extra
+	headers required at compilation.
+
+2012-12-19  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/cheat-sheet.c, app/menubar.c: XM Effects Cheat Sheet is ported from
+	obsolete code to libGtkHTML, thus allowing improved formating.
+
+2012-12-17  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* drivers/file-output.c: The return value of some GLIBC syscalls
+	is checked to avoid compiler warnings and better debugging;
+	* app/audioconfig.c, app/gui.c, app/gui-settings.c, 
+	app/instrument-editor.c, app/keys.c/ app/menubar.c, app/midi-settings-*.c,
+	app/sample-editor.c, app/track-editor.c: The code is cleaned up from 
+	Gnome residuals (excluding Canvas stuff);
+	* local headers app/gettext.h and app/i18n.h are dropped in favour of
+	glibc/gi18n.h.
+
+2012-12-11  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.c, app/transposition.c: Transposition dialog code is improved
+	and bugfixed.
+
+2012-12-10  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/file-operations.[ch], app/instrument-editor.c,
+	app/sample-editor.c: File filters are added.
+
+2012-12-07  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c, app/audio.c, app/xm.c: The return value of some GLIBC syscalls
+	is checked to avoid compiler warnings and better debugging;
+	* app/drivers/alsa1x-output.c: Device is opened in non-block mode.
+
+2012-11-30  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Measure selection is ported from deprecated to modern widgets;
+	* app/audio.c, app/errors.h, app/gui.c, app/gui-subs.[ch],
+	app/file-operations.c, app/instrument-editor.c, app/keys.c, app/preferences.c,
+	app/sample-editor.c, app/xm.c: Error and warning dialogs are ported from
+	Gnome to GTK.
+
+2012-11-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Crash at window closing by "x" button is fixed.
+
+2012-11-02  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Makefile.am, soundtracker.xml, app/audioconfig.c, app/cheat-sheet.c,
+	app/file-operations.c, app/file-operations.h, app/gui-settings.c,
+	app/gui-subs.c, app/gui-subs.h, app/gui.c, app/gui.h, app/instrument-editor.c,
+	app/keys.c, app/main.c, app/menubar.c, app/menubar.h, app/module-info.c,
+	app/preferences.c, app/sample-editor.c, app/track-editor.c, app/track-editor.h,
+	app/transposition.c: Gnome menus are removed in favor of GtkBuilder. GtkPixmap
+	is changed into GtkImage.
+
+2012-10-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/file-operations.c, app/file-operations.h, app/gui-subs.c, app/gui-subs.h,
+	app/gui.c, app/gui.h, app/instrument-editor.c, app/menubar.c,
+	app/sample-editor.c, app/xm.c, app/xm.h, configure.in: FileChooser is used for
+	file operations instead of FileSelection. Ctrl + S is now used for current
+	module saving. Single click for opening now works.
+
+2012-10-19  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x-output.c: Fixed wrong time estimation + code cleanups.
+
+2012-10-10  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/tracker.[ch]: Separation bars between tracks are now being drawn correctly.
+
+2012-10-09  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/midi-09x.c: Memory leaks are fixed.
+
+2012-08-15  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-settings.c, app/gui-settings.c, app/tracker-settings.[ch],
+	app/track-editor.c: Implemented current font saving,
+	fixed bug with font raising/lowering.
+
+2011-04-20  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Dialogs are cleaned up from obsolete code and
+	fully converted to gtk+-2;
+
+2008-08-08  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui-subs.c: List selection now follows mouse pointer when left
+	button is pressed (just like in ST-gtk1);
+	* app/gui-subs.c: Lists are now strippy;
+	* app/drivers/jack-output.c: Jack driver crash fixed;
+	* app/midi-09x.c: Error warnings are now converted into current
+	encoding;
+	* app/main.c: Reduced instrument and sample lists rows height;
+	* app/gui-subs.c: Speeds up lists a bit;
+
+2008-05-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/sample-editor.c: Raw input dialog rewritten to comply gtk+-2
+	specifications;
+	* app/menubar.c: About_dialog using modern gtk+-2 functions;
+
+2008-01-09  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Updated NLS stuff (from 0.6.8-gtk1 branch);
+	* Added modern Gtk+-2.12 fixes by Bernardo Innocenti;
+	* Finally merged the rest of 0.6.7->0.6.8 changes with gtk+-2 branch!
+
+2008-01-09  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Ported all permanent channels related stuff.
+
+2007-08-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.[ch], app/track-editor.[ch]: Aftertouch recording ported from 0.6.8;
+	* app/sample-editor.[ch]: "Trim" and "Crop" fuctions ported from 0.6.8;
+	* app/xm.c: More accurate handling of non-standard XM files (from 0.6.8);
+
+2007-03-04  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x-out.c: Some improvements in device selection,
+	error dialogs.
+
+2007-02-25  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/drivers/alsa1x-out.c: First alsa-1.x output driver
+	preview. Incomplete, buggy, imperfect but _working_!
+
+2006-11-11  Frank Haferkorn <WillyFoobar@gmx.de>
+
+	* app/*.c:
+	fixed compiler warnings that are related to illegal signedness
+	sometimes the fix by casting from guint8 to (char*) 
+	could better be done by changing the declaration of the variables from guint8 to gint8
+	simply look for "(char*)" and modify the type of the variables (like 'a[]' and 'b[]')
+
+2006-11-10  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/gui.c: Fixed issue with catching focus at the startup.
+
+2006-11-03  Frank Haferkorn <WillyFoobar@gmx.de>
+
+	* app/drivers/file-output.c: 
+	  line 410: removed an  gcc error when compiling without sndfile package
+
+	* app/drivers/jack-output.c:
+	the change suggested by "Erik de Castro Lopo"
+		#define INT16_MAX 32767.0f
+	collided with
+		 define INT16_MAX              (32767)
+	of included file
+		/usr/include/stdint.h
+	lines 62 and 66 were modified to "INT16_MAX_float"
+
+2006-10-22  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/clock.[ch]: removed the unused code.
+
+2006-10-14  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Some more obsolete gtk+-1 functions removed by gtk+-2 stuff.
+	* app/clock.[ch]: The clock is kept back! (Code was taken from gtk+-1
+	by Miroslav Shatlev and ported to gtk+-2 by me).
+
+2006-09-28  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Added patch from Miroslav increasing the number of the samples
+	per instrument up to 128.
+
+2006-09-07  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Fixed yet another gettext issue (make update-po now works).
+	* app/audioconfig.c: fixed driver initializing/shutdown issues.
+
+2006-08-30  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Fixed bug with jack enabling in ./configure when it's
+	installed, but disabled thru --disable-jack (thanks Elias
+	Pschernig for its diagnostics).
+
+2006-08-14  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* Fixed some strange autotools/gettext issues. Now "make
+	install" works correctly.
+	* MIDI issue fixed (port from ST-0.6.8).
+
+2006-08-20  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* Makefile.am (SUBDIRS): Remove intl.
+	(ACLOCAL_AMFLAGS): New variable.
+	(EXTRA_DIST): Add m4/ChangeLog.
+
+2006-08-14  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/tracker.c: minor bug with tracker background drawing is
+	fixed.
+	* Tracker colors configuration dialog added. Now all tracker
+	elements (background, highlightings, notes, barc, etc) can be
+	painted with every color.
+
+2006-08-12  Yury Aliaev  <mutab0r@rambler.ru>
+	* app/tracker.[ch] now contain only Gtk+-2 compilant code. Font
+
+	selection now works for the tracker.
+
+	* Fixed issue regarding tracker line format saving in
+	app/gui-settings.c (this has also removed compiler warning).
+
+2006-01-21  Yury Aliaev  <mutab0r@rambler.ru>
+
+	* app/audioconfig.c rewritten. Less hacks, less size, better
+	gtk+-2 compilance and speed.
+
+2005-12-21  Yury Aliaev  <mutab0r@rambler.ru>
+	* Completed gtk_clist -> gtk_treeview porting.
+
+2005-04-10  Yury Aliaev  <mutab0r@rambler.ru>
+	* Fixed some issues on Gtk+-2 port. Now ST is compilled against
+	gtk+-2.6.4 library, and in general works.

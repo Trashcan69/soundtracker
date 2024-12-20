@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Name=SoundTracker
+
+Comment=Module Player / Editor
+Comment[pl]=Odtwarzacz i edytor modułów
+Comment[de]=Modul-Player / -Editor
+Comment[fr]=Lecteur et éditeur de module
+Comment[ru]=Программа для проигрывания и редактирования модулей
+
+Exec=soundtracker %F
+Icon=soundtracker-icon
+Terminal=false
+Type=Application
+Categories=X-Gtk;Audio;Sequencer;Player;Midi;AudioVideoEditing;Music;AudioVideo;
+MimeType=audio/x-xm;audio/x-mod;
